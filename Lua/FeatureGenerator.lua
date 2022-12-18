@@ -100,24 +100,24 @@ function FeatureGenerator.Create(args)
 	if you enabled the game option. (Enabled by default)
 	--]]
 	if (not Game.IsOption(GameOptionTypes.GAMEOPTION_JUNGLE_PLAINS)) then
-		print("- Game option Jungle on Plains is enabled");
+		print("- Game option Jungle on Plains is disabled");
 		jungleBool			= false;
 	else
-		print("- Game option Jungle on Plains is disabled");
+		print("- Game option Jungle on Plains is enabled");
 	end
 
 	if (not Game.IsOption(GameOptionTypes.GAMEOPTION_ARCTIC_RIVER)) then
-		print("- Game option Warm Arctic River is enabled");
+		print("- Game option Warm Arctic River is disabled");
 		arcticRiver			= false;
 	else
-		print("- Game option Warm Arctic River is disabled");
+		print("- Game option Warm Arctic River is enabled");
 	end
 
 	if (not Game.IsOption(GameOptionTypes.GAMEOPTION_FLOOD_DESERT)) then
-		print("- Game option Desert Flood Plains is enabled");
+		print("- Game option Desert Flood Plains is disabled");
 		floodDesert			= false;
 	else
-		print("- Game option Desert Flood Plains is disabled");
+		print("- Game option Desert Flood Plains is enabled");
 	end
 
 	--[[ Activate printout for debugging only.
