@@ -13,8 +13,8 @@ include("MapmakerUtilities");
 FeatureGenerator = {};
 ------------------------------------------------------------------------------
 function FeatureGenerator.Create(args)
-	--[[ Civ4's truncated "Climate" setting has been abandoned. Civ5 has returned to 
-	Civ3-style map options for World Age, Temperature, and Rainfall. Control over the 
+	--[[ Civ4's truncated "Climate" setting has been abandoned. Civ5 has returned to
+	Civ3-style map options for World Age, Temperature, and Rainfall. Control over the
 	terrain has been removed from the XML.  - Bob Thomas, March 2010  ]]--
 	--
 	-- Sea Level and World Age map options affect only plot generation.
@@ -26,6 +26,7 @@ function FeatureGenerator.Create(args)
 	local jungle_grain = args.jungle_grain or 5;
 	local forest_grain = args.forest_grain or 6;
 	local clump_grain = args.clump_grain or 3;
+	local floodplains_grain = args.floodplains_grain or 5;
 	local iJungleChange = args.iJungleChange or 20;
 	local iForestChange = args.iForestChange or 15;
 	local iClumpChange = args.iClumpChange or 5;
@@ -34,15 +35,17 @@ function FeatureGenerator.Create(args)
 	local iWetFactor = args.iWetFactor or 2;
 	local fMarshChange = args.fMarshChange or 1.5;
 	local fOasisChange = args.fOasisChange or 1.5;
+	local fFloodPlainsChange = args.fFloodPlainsChange or 2.5;
 	local fracXExp = args.fracXExp or -1;
 	local fracYExp = args.fracYExp or -1;
-	
+
 	-- Set feature traits.
 	local iJunglePercent = args.iJunglePercent or 65;
 	local iForestPercent = args.iForestPercent or 31;
 	local iClumpHeight = args.iClumpHeight or 90;
 	local fMarshPercent = args.fMarshPercent or 8;
 	local iOasisPercent = args.iOasisPercent or 6;
+	local iFloodPlainsPercent = args.iFloodPlainsPercent or 40;
 	-- Adjust foliage amounts according to user's Rainfall selection. (Which must be passed in by the map script.)
 	if rainfall == 1 then -- Rainfall is sparse, climate is Arid.
 		iJunglePercent = iJunglePercent - iJungleChange;
@@ -51,6 +54,7 @@ function FeatureGenerator.Create(args)
 		iClumpHeight = iClumpHeight - iClumpChange;
 		fMarshPercent = fMarshPercent / fMarshChange;
 		iOasisPercent = iOasisPercent / fOasisChange;
+		iFloodPlainsPercent = iFloodPlainsPercent / fFloodPlainsChange;
 	elseif rainfall == 3 then -- Rainfall is abundant, climate is Wet.
 		iJunglePercent = iJunglePercent + iJungleChange;
 		iJungleFactor = iWetFactor;
@@ -58,7 +62,62 @@ function FeatureGenerator.Create(args)
 		iClumpHeight = iClumpHeight + iClumpChange;
 		fMarshPercent = fMarshPercent * fMarshChange;
 		iOasisPercent = iOasisPercent * fOasisChange;
+		iFloodPlainsPercent = iFloodPlainsPercent * fFloodPlainsChange;
 	else -- Rainfall is Normal.
+	end
+	------------------------------------------------------------------------------
+	-- CUSTOMIZED VERSION:	N.Core
+	------------------------------------------------------------------------------
+	--[[ This customized version added some custom game options that you can activate on
+	advanced setup for feature generation and river terrain. Also added a better implementation
+	for flood plains generation so it won't force override to place flood plains on a river
+	plot which terrain is set to have flood plains on Feature_TerrainBooleans table.]]
+	--
+	--[[
+	Value options for jungleBoolRandom:
+	true 	=	Randomize terrain override; Jungle can appear on grassland, but rare, because there
+				is a chance value that you can set so jungle can override terrains to plains.
+	false 	=	Disable terrain override; So jungle that appears on grassland will keep the terrain.
+	--]]
+	local jungleBool		= true;
+	local jungleBoolRandom	= true;
+	local jungleBoolChance	= 33;	--	Set only between 1-100
+	--[[
+	Value options for arcticRiverRandom:
+	true 	=	Randomize; Tundra river have 40% chance for turning into plains river,
+				and snow river have 60% chance for turning into tundra river.
+	false 	=	Disable terrain change; Tundra river and snow river will keep its terrain.
+	--]]
+	local arcticRiver		= true;
+	local arcticRiverRandom	= true;
+	local tundraRiverChance	= 50;	--	Set only between 1-100
+	local snowRiverChance	= 60;	--	Set only between 1-100
+	--
+	local floodDesert		= true;
+	--
+	--[[
+	Set jungleBool, arcticRiver, and floodDesert to 'true'
+	if you enabled the game option. (Enabled by default)
+	--]]
+	if (not Game.IsOption(GameOptionTypes.GAMEOPTION_JUNGLE_PLAINS)) then
+		print("- Game option Jungle on Plains is enabled");
+		jungleBool			= false;
+	else
+		print("- Game option Jungle on Plains is disabled");
+	end
+
+	if (not Game.IsOption(GameOptionTypes.GAMEOPTION_ARCTIC_RIVER)) then
+		print("- Game option Warm Arctic River is enabled");
+		arcticRiver			= false;
+	else
+		print("- Game option Warm Arctic River is disabled");
+	end
+
+	if (not Game.IsOption(GameOptionTypes.GAMEOPTION_FLOOD_DESERT)) then
+		print("- Game option Desert Flood Plains is enabled");
+		floodDesert			= false;
+	else
+		print("- Game option Desert Flood Plains is disabled");
 	end
 
 	--[[ Activate printout for debugging only.
@@ -69,6 +128,7 @@ function FeatureGenerator.Create(args)
 	print("- Clump Forest %:", 100 - iClumpHeight);
 	print("- Marsh Percentage:", fMarshPercent);
 	print("- Oasis Percentage:", iOasisPercent);
+	print("- Flood Plains Percentage:", iFloodPlainsPercent);
 	print("- - - - - - - - - - - - - - -");
 	]]--
 
@@ -76,10 +136,11 @@ function FeatureGenerator.Create(args)
 	local world_info = GameInfo.Worlds[Map.GetWorldSize()];
 	jungle_grain = jungle_grain + world_info.FeatureGrainChange;
 	forest_grain = forest_grain + world_info.FeatureGrainChange;
+	floodplains_grain = floodplains_grain + world_info.FeatureGrainChange;
 
 	-- create instance data
 	local instance = {
-	
+
 		-- methods
 		__initFractals		= FeatureGenerator.__initFractals,
 		__initFeatureTypes	= FeatureGenerator.__initFeatureTypes,
@@ -87,57 +148,74 @@ function FeatureGenerator.Create(args)
 		GetLatitudeAtPlot	= FeatureGenerator.GetLatitudeAtPlot,
 		AddFeaturesAtPlot	= FeatureGenerator.AddFeaturesAtPlot,
 		AddOasisAtPlot		= FeatureGenerator.AddOasisAtPlot,
+		AddFloodPlainsAtPlot		= FeatureGenerator.AddFloodPlainsAtPlot,
 		AddIceAtPlot		= FeatureGenerator.AddIceAtPlot,
 		AddMarshAtPlot		= FeatureGenerator.AddMarshAtPlot,
 		AddJunglesAtPlot	= FeatureGenerator.AddJunglesAtPlot,
 		AddForestsAtPlot	= FeatureGenerator.AddForestsAtPlot,
 		AddAtolls			= FeatureGenerator.AddAtolls,
+		AddWarmArcticRiverAtPlot	= FeatureGenerator.AddWarmArcticRiverAtPlot,
+		AddPlainsOnJungleAtPlot	= FeatureGenerator.AddPlainsOnJungleAtPlot,
+		AddTerrainsAtPlot	= FeatureGenerator.AddTerrainsAtPlot,
 		AdjustTerrainTypes	= FeatureGenerator.AdjustTerrainTypes,
-		
+
 		-- members
 		iGridW = gridWidth,
 		iGridH = gridHeight,
-		
+
 		iJunglePercent = iJunglePercent,
 		iJungleFactor = iJungleFactor,
 		iForestPercent = iForestPercent,
 		iClumpHeight = iClumpHeight,
 		fMarshPercent = fMarshPercent,
 		iOasisPercent = iOasisPercent,
-	
+		iFloodPlainsPercent = iFloodPlainsPercent,
+
 		jungle_grain = jungle_grain,
 		forest_grain = forest_grain,
 		clump_grain = clump_grain,
-		
+		floodplains_grain = floodplains_grain,
+
 		fractalFlags = Map.GetFractalFlags(),
 		fracXExp = fracXExp,
 		fracYExp = fracYExp,
+
+		jungleBool = jungleBool,
+		jungleBoolRandom = jungleBoolRandom,
+		jungleBoolChance = jungleBoolChance,
+		arcticRiver = arcticRiver,
+		arcticRiverRandom = arcticRiverRandom,
+		tundraRiverChance = tundraRiverChance,
+		snowRiverChance = snowRiverChance,
+		floodDesert = floodDesert
 	};
 
 	-- initialize instance data
 	instance:__initFractals()
 	instance:__initFeatureTypes()
-	
+
 	return instance;
 end
 ------------------------------------------------------------------------------
 function FeatureGenerator:__initFractals()
 	local width = self.iGridW;
 	local height = self.iGridH;
-	
+
 	-- Create fractals
-	self.jungles		= Fractal.Create(width, height, self.jungle_grain, self.fractalFlags, self.fracXExp, self.fracYExp);
-	self.forests		= Fractal.Create(width, height, self.forest_grain, self.fractalFlags, self.fracXExp, self.fracYExp);
-	self.forestclumps	= Fractal.Create(width, height, self.clump_grain, self.fractalFlags, self.fracXExp, self.fracYExp);
-	self.marsh			= Fractal.Create(width, height, 4, self.fractalFlags, self.fracXExp, self.fracYExp);
-	
+	self.jungles			= Fractal.Create(width, height, self.jungle_grain, self.fractalFlags, self.fracXExp, self.fracYExp);
+	self.forests			= Fractal.Create(width, height, self.forest_grain, self.fractalFlags, self.fracXExp, self.fracYExp);
+	self.forestclumps		= Fractal.Create(width, height, self.clump_grain, self.fractalFlags, self.fracXExp, self.fracYExp);
+	self.marsh				= Fractal.Create(width, height, 4, self.fractalFlags, self.fracXExp, self.fracYExp);
+	self.floodplains		= Fractal.Create(width, height, self.floodplains_grain, self.fractalFlags, self.fracXExp, self.fracYExp);
+
 	-- Get heights
-	self.iJungleBottom	= self.jungles:GetHeight((100 - self.iJunglePercent)/2)
-	self.iJungleTop		= self.jungles:GetHeight((100 + self.iJunglePercent)/2)
-	self.iJungleRange	= (self.iJungleTop - self.iJungleBottom) * self.iJungleFactor;
-	self.iForestLevel	= self.forests:GetHeight(100 - self.iForestPercent)
-	self.iClumpLevel	= self.forestclumps:GetHeight(self.iClumpHeight)
-	self.iMarshLevel	= self.marsh:GetHeight(100 - self.fMarshPercent)
+	self.iJungleBottom		= self.jungles:GetHeight((100 - self.iJunglePercent)/2)
+	self.iJungleTop			= self.jungles:GetHeight((100 + self.iJunglePercent)/2)
+	self.iJungleRange		= (self.iJungleTop - self.iJungleBottom) * self.iJungleFactor;
+	self.iForestLevel		= self.forests:GetHeight(100 - self.iForestPercent)
+	self.iClumpLevel		= self.forestclumps:GetHeight(self.iClumpHeight)
+	self.iMarshLevel		= self.marsh:GetHeight(100 - self.fMarshPercent)
+	self.iFloodPlainsLevel	= self.floodplains:GetHeight(100 - self.iFloodPlainsPercent)
 end
 ------------------------------------------------------------------------------
 function FeatureGenerator:__initFeatureTypes()
@@ -148,7 +226,7 @@ function FeatureGenerator:__initFeatureTypes()
 	self.featureForest = FeatureTypes.FEATURE_FOREST;
 	self.featureOasis = FeatureTypes.FEATURE_OASIS;
 	self.featureMarsh = FeatureTypes.FEATURE_MARSH;
-	
+
 	self.terrainIce = TerrainTypes.TERRAIN_SNOW;
 	self.terrainTundra = TerrainTypes.TERRAIN_TUNDRA;
 	self.terrainPlains = TerrainTypes.TERRAIN_PLAINS;
@@ -156,7 +234,7 @@ end
 ------------------------------------------------------------------------------
 function FeatureGenerator:AddFeatures(allow_mountains_on_coast)
 	local flag = allow_mountains_on_coast or true;
-	--[[ Removing mountains from coasts cannot be done during plot or terrain 
+	--[[ Removing mountains from coasts cannot be done during plot or terrain
 	generation, because the function that determines what is or isn't adjacent
 	to a salt water ocean requires both plot and terrain data to operate. So
 	even though this operation is, strictly speaking, a plot-type operation, I
@@ -174,19 +252,26 @@ function FeatureGenerator:AddFeatures(allow_mountains_on_coast)
 				end
 			end
 		end
-		-- This function needs to recalculate areas after operating. However, so does 
+		-- This function needs to recalculate areas after operating. However, so does
 		-- adding feature ice, so the recalc was removed from here and put in MapGenerator()
 	end
-	
+
 	self:AddAtolls(); -- Adds Atolls to oceanic maps.
-	
+
 	-- Main loop, adds features to all plots as appropriate
 	for y = 0, self.iGridH - 1, 1 do
 		for x = 0, self.iGridW - 1, 1 do
 			self:AddFeaturesAtPlot(x, y);
 		end
 	end
-	
+
+	-- Main loop, change terrains on plots as appropriate
+	for y = 0, self.iGridH - 1, 1 do
+		for x = 0, self.iGridW - 1, 1 do
+			self:AddTerrainsAtPlot(x, y);
+		end
+	end
+
 	self:AdjustTerrainTypes(); -- Sets terrain under jungles and softens arctic rivers
 end
 ------------------------------------------------------------------------------
@@ -201,12 +286,31 @@ function FeatureGenerator:AddFeaturesAtPlot(iX, iY)
 	-- adds any appropriate features at the plot (iX, iY) where (0,0) is in the SW
 	local lat = self:GetLatitudeAtPlot(iX, iY);
 	local plot = Map.GetPlot(iX, iY);
-
+--[[
 	if plot:CanHaveFeature(self.featureFloodPlains) then
 		-- All desert plots along river are set to flood plains.
 		plot:SetFeatureType(self.featureFloodPlains, -1)
 	end
-	
+--]]
+	if self.floodDesert then
+		--print("- Game option Desert Flood Plains is enabled; Force Desert river to have Flood Plains");
+		if (plot:GetTerrainType() == TerrainTypes.TERRAIN_DESERT) and (plot:CanHaveFeature(self.featureFloodPlains)) then
+			-- All desert plots along river are set to flood plains.
+			plot:SetFeatureType(self.featureFloodPlains, -1)
+		end
+		if (plot:GetTerrainType() ~= TerrainTypes.TERRAIN_DESERT) and (plot:GetFeatureType() == FeatureTypes.NO_FEATURE) then
+			-- Plots other than desert along river are occasionally set to flood plains.
+			-- (NOTE: You have to add the associated terrain and Flood Plains to Feature_TerrainBooleans in order for this to work.)
+			self:AddFloodPlainsAtPlot(plot, iX, iY, lat);
+		end
+	else
+		--print("- Game option Desert Flood Plains is disabled; Use regular placement");
+		if (plot:GetFeatureType() == FeatureTypes.NO_FEATURE) then
+			-- Plots along river are occasionally set to flood plains.
+			self:AddFloodPlainsAtPlot(plot, iX, iY, lat);
+		end
+	end
+
 	if (plot:GetFeatureType() == FeatureTypes.NO_FEATURE) then
 		self:AddOasisAtPlot(plot, iX, iY, lat);
 	end
@@ -218,21 +322,37 @@ function FeatureGenerator:AddFeaturesAtPlot(iX, iY)
 	if (plot:GetFeatureType() == FeatureTypes.NO_FEATURE) then
 		self:AddMarshAtPlot(plot, iX, iY, lat);
 	end
-		
+
 	if (plot:GetFeatureType() == FeatureTypes.NO_FEATURE) then
 		self:AddJunglesAtPlot(plot, iX, iY, lat);
 	end
-	
+
 	if (plot:GetFeatureType() == FeatureTypes.NO_FEATURE) then
 		self:AddForestsAtPlot(plot, iX, iY, lat);
 	end
-		
+
 end
 ------------------------------------------------------------------------------
 function FeatureGenerator:AddOasisAtPlot(plot, iX, iY, lat)
 	if(plot:CanHaveFeature(self.featureOasis)) then
 		if Map.Rand(100, "Add Oasis Lua") <= self.iOasisPercent then
 			plot:SetFeatureType(self.featureOasis, -1);
+		end
+	end
+end
+------------------------------------------------------------------------------
+function FeatureGenerator:AddFloodPlainsAtPlot(plot, iX, iY, lat)
+	local floodplains_height = self.floodplains:GetHeight(iX, iY);
+	if(plot:CanHaveFeature(self.featureFloodPlains)) then
+		if (floodplains_height >= self.iFloodPlainsLevel) then
+			--if Map.Rand(100, "Add Flood Plains Lua") <= self.iFloodPlainsPercent then
+				plot:SetFeatureType(self.featureFloodPlains, -1);
+			--end
+		end
+	end
+	if(plot:CanHaveFeature(self.featureFloodPlains)) and (plot:GetTerrainType() == TerrainTypes.TERRAIN_DESERT) then
+		if Map.Rand(100, "Add Flood Plains Lua") <= self.iFloodPlainsPercent then
+			plot:SetFeatureType(self.featureFloodPlains, -1);
 		end
 	end
 end
@@ -281,25 +401,73 @@ function FeatureGenerator:AddForestsAtPlot(plot, iX, iY, lat)
 	end
 end
 ------------------------------------------------------------------------------
+function FeatureGenerator:AddTerrainsAtPlot(iX, iY)
+	-- adds any appropriate features at the plot (iX, iY) where (0,0) is in the SW
+	local lat = self:GetLatitudeAtPlot(iX, iY);
+	local plot = Map.GetPlot(iX, iY);
+
+	if (not self.arcticRiver) and (self.arcticRiverRandom) then
+		--print("- Game option Warm Arctic River is disabled; Use randomized override");
+		self:AddWarmArcticRiverAtPlot(plot, iX, iY, lat);
+	elseif (not self.arcticRiver) and (not self.arcticRiverRandom) then
+		--print("- Game option Warm Arctic River is disabled; Don't override terrains");
+	end
+
+	if (not self.jungleBool) and self.jungleBoolRandom then
+		--print("- Game option Jungle on Plains is disabled; Use randomized override");
+		self:AddPlainsOnJungleAtPlot(plot, iX, iY, lat);
+	elseif (not self.jungleBool) and (not self.jungleBoolRandom) then
+		--print("- Game option Jungle on Plains is disabled; Don't override terrains to Plains");
+	end
+end
+------------------------------------------------------------------------------
+function FeatureGenerator:AddWarmArcticRiverAtPlot(plot, iX, iY, lat)
+	if(plot:IsRiver()) then
+		if (plot:GetTerrainType() == self.terrainTundra) then
+			if Map.Rand(100, self.tundraRiverChance .. "% chance for Tundra river terrain to Plains Lua") <= (100 - self.tundraRiverChance) then
+				plot:SetTerrainType(self.terrainPlains, false, true)
+			end
+		elseif (plot:GetTerrainType() == self.terrainIce) then
+			if Map.Rand(100, self.snowRiverChance .. "% chance for Snow river terrain to Tundra Lua") <= (100 - self.snowRiverChance) then
+				plot:SetTerrainType(self.terrainTundra, false, true)
+			end
+		end
+	end
+end
+------------------------------------------------------------------------------
+function FeatureGenerator:AddPlainsOnJungleAtPlot(plot, iX, iY, lat)
+	if (plot:GetFeatureType() == self.featureJungle) then
+		if Map.Rand(100, self.jungleBoolChance .. "% chance for Jungle plot to Jungle Plains Lua") <= (100 - self.jungleBoolChance) then
+			plot:SetTerrainType(self.terrainPlains, false, true)
+		end
+	end
+end
+------------------------------------------------------------------------------
 function FeatureGenerator:AdjustTerrainTypes()
 	-- This function added April 2009 for Civ5, by Bob Thomas.
 	-- Purpose of this function is to turn terrain under jungles
 	-- into Plains, and to soften arctic terrain types at rivers.
 	local width = self.iGridW - 1;
 	local height = self.iGridH - 1;
-	
+
 	for y = 0, height do
 		for x = 0, width do
 			local plot = Map.GetPlot(x, y);
-			
-			if (plot:GetFeatureType() == self.featureJungle) then
-				plot:SetTerrainType(self.terrainPlains, false, true)  -- These flags are for recalc of areas and rebuild of graphics. No need to recalc from any of these changes.		
-			elseif (plot:IsRiver()) then
-				local terrainType = plot:GetTerrainType();
-				if (terrainType == self.terrainTundra) then
-					plot:SetTerrainType(self.terrainPlains, false, true)
-				elseif (terrainType == self.terrainIce) then
-					plot:SetTerrainType(self.terrainTundra, false, true)					
+
+			if self.jungleBool then
+				--print("- Game option Jungle on Plains is enabled; Override terrains to Plains");
+				if (plot:GetFeatureType() == self.featureJungle) then
+					plot:SetTerrainType(self.terrainPlains, false, true)  -- These flags are for recalc of areas and rebuild of graphics. No need to recalc from any of these changes.
+				end
+			elseif self.arcticRiver then
+				--print("- Game option Warm Arctic River is enabled; Override river terrains");
+				if (plot:IsRiver()) then
+					local terrainType = plot:GetTerrainType();
+					if (terrainType == self.terrainTundra) then
+						plot:SetTerrainType(self.terrainPlains, false, true)
+					elseif (terrainType == self.terrainIce) then
+						plot:SetTerrainType(self.terrainTundra, false, true)
+					end
 				end
 			end
 		end
@@ -318,7 +486,7 @@ function FeatureGenerator:AddAtolls()
 	if iNumBiggestOceanPlots <= (iW * iH) / 4 then -- No major oceans on this world.
 		return
 	end
-	
+
 	-- World has oceans, proceed with adding Atolls.
 	local iNumAtollsPlaced = 0;
 	local direction_types = {
@@ -427,7 +595,7 @@ function FeatureGenerator:AddAtolls()
 	local max_gamma = math.ceil(table.maxn(gamma_list) / 4);
 	local max_delta = math.ceil(table.maxn(delta_list) / 3);
 	local max_epsilon = math.ceil(table.maxn(epsilon_list) / 4);
-	
+
 	-- Place Atolls.
 	local plotIndex;
 	local i_alpha, i_beta, i_gamma, i_delta, i_epsilon = 1, 1, 1, 1, 1;
@@ -540,7 +708,7 @@ function FeatureGenerator:AddAtolls()
 			--print("** ERROR ** Atoll unable to be placed and/or chosen Plot Index was nil.");
 		end
 	end
-	
+
 	--[[ Debug report
 	print("-"); print("- Atoll Target Number: ", atoll_number);
 	print("- Number of Atolls placed: ", iNumAtollsPlaced); print("-");
