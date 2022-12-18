@@ -243,6 +243,7 @@ function AssignStartingPlots.Create()
 		PlaceBonusResources = AssignStartingPlots.PlaceBonusResources,
 		IsEvenMoreResourcesActive = AssignStartingPlots.IsEvenMoreResourcesActive,
 		IsReducedSupplyActive = AssignStartingPlots.IsReducedSupplyActive,
+		IsMoreWondersVPActive = AssignStartingPlots.IsMoreWondersVPActive,
 		Plot_GetPlotsInCircle = AssignStartingPlots.Plot_GetPlotsInCircle,
 		Plot_GetFertilityInRange = AssignStartingPlots.Plot_GetFertilityInRange,
 		Plot_GetFertility = AssignStartingPlots.Plot_GetFertility,
@@ -802,11 +803,11 @@ function AssignStartingPlots:__InitLuxuryWeights()
 	{self.fur_ID,		50},
 	{self.silver_ID,	40},
 	{self.salt_ID,		40},
-	{self.amber_ID,		10},
-	{self.copper_ID,	10},
-	{self.gems_ID,		10},
-	{self.jade_ID,		10},
-	{self.lapis_ID,		10},
+	{self.amber_ID,		25},
+	{self.copper_ID,	25},
+	{self.gems_ID,		25},
+	{self.jade_ID,		25},
+	{self.lapis_ID,		25},
 	{self.whale_ID,		10},
 	{self.crab_ID,		10},
 	{self.pearls_ID,	10},
@@ -814,9 +815,9 @@ function AssignStartingPlots:__InitLuxuryWeights()
 
 	-- MOD.HungryForFood: Start
 	if self:IsEvenMoreResourcesActive() == true then
-		table.insert(self.luxury_region_weights[1], {self.obsidian_ID,	10});
-		table.insert(self.luxury_region_weights[1], {self.platinum_ID,	10});
-		table.insert(self.luxury_region_weights[1], {self.tin_ID,		10});
+		table.insert(self.luxury_region_weights[1], {self.obsidian_ID,	20});
+		table.insert(self.luxury_region_weights[1], {self.platinum_ID,	20});
+		table.insert(self.luxury_region_weights[1], {self.tin_ID,		20});
 	end
 	-- MOD.HungryForFood: End
 
@@ -827,7 +828,7 @@ function AssignStartingPlots:__InitLuxuryWeights()
 	{self.citrus_ID,	40},
 	{self.cocoa_ID,		40},
 	{self.spices_ID,	40},
-	{self.sugar_ID,		50},
+	{self.sugar_ID,		80},
 	{self.truffles_ID,	40},
 	{self.silk_ID,		10},
 	{self.dye_ID,		10},
@@ -841,18 +842,19 @@ function AssignStartingPlots:__InitLuxuryWeights()
 	if self:IsEvenMoreResourcesActive() == true then
 		table.insert(self.luxury_region_weights[2], {self.obsidian_ID,	40});
 		table.insert(self.luxury_region_weights[2], {self.poppy_ID,		40});
-		table.insert(self.luxury_region_weights[2], {self.platinum_ID,	10});
-		table.insert(self.luxury_region_weights[2], {self.tin_ID,		10});
+		table.insert(self.luxury_region_weights[2], {self.platinum_ID,	20});
+		table.insert(self.luxury_region_weights[2], {self.tin_ID,		20});
 	end
 	-- MOD.HungryForFood: End
 
 	self.luxury_region_weights[3] = {			-- Forest
+	{self.fur_ID,		40},
 	{self.silk_ID,		40},
 	{self.dye_ID,		40},
-	{self.truffles_ID,	10},
-	{self.citrus_ID,	10},
-	{self.cocoa_ID,		10},
-	{self.spices_ID,	10},
+	{self.truffles_ID,	25},
+	{self.citrus_ID,	25},
+	{self.cocoa_ID,		25},
+	{self.spices_ID,	25},
 	{self.whale_ID,		10},
 	{self.crab_ID,		10},
 	{self.pearls_ID,	10},
@@ -860,7 +862,7 @@ function AssignStartingPlots:__InitLuxuryWeights()
 
 	-- MOD.HungryForFood: Start
 	if self:IsEvenMoreResourcesActive() == true then
-		table.insert(self.luxury_region_weights[3], {self.lavender_ID,	10});
+		table.insert(self.luxury_region_weights[3], {self.lavender_ID,	25});
 	end
 	-- MOD.HungryForFood: End
 
@@ -869,13 +871,13 @@ function AssignStartingPlots:__InitLuxuryWeights()
 	{self.salt_ID,		40},
 	{self.gold_ID,		40},
 	{self.lapis_ID,		40},
-	{self.silver_ID,	20},
-	{self.copper_ID,	10},
-	{self.amber_ID,		10},
-	{self.gems_ID,		10},
-	{self.jade_ID,		10},
-	{self.sugar_ID,		10},
-	{self.cotton_ID,	10},
+	{self.silver_ID,	25},
+	{self.copper_ID,	25},
+	{self.amber_ID,		25},
+	{self.gems_ID,		25},
+	{self.jade_ID,		25},
+	{self.sugar_ID,		50},
+	{self.cotton_ID,	25},
 	{self.whale_ID,		10},
 	{self.crab_ID,		10},
 	{self.pearls_ID,	10},
@@ -883,9 +885,9 @@ function AssignStartingPlots:__InitLuxuryWeights()
 
 	-- MOD.HungryForFood: Start
 	if self:IsEvenMoreResourcesActive() == true then
-		table.insert(self.luxury_region_weights[4], {self.obsidian_ID,	10});
-		table.insert(self.luxury_region_weights[4], {self.platinum_ID,	10});
-		table.insert(self.luxury_region_weights[4], {self.tin_ID,		10});
+		table.insert(self.luxury_region_weights[4], {self.obsidian_ID,	20});
+		table.insert(self.luxury_region_weights[4], {self.platinum_ID,	20});
+		table.insert(self.luxury_region_weights[4], {self.tin_ID,		20});
 	end
 	-- MOD.HungryForFood: End
 
@@ -916,15 +918,15 @@ function AssignStartingPlots:__InitLuxuryWeights()
 
 
 	self.luxury_region_weights[6] = {			-- Plains
-	{self.incense_ID,	40},
-	{self.ivory_ID,		40},
+	{self.incense_ID,	60},
+	{self.ivory_ID,		75},
 	{self.wine_ID,		40},
 	{self.olives_ID,	40},
 	{self.coffee_ID,	40},
-	{self.tobacco_ID,	10},
-	{self.tea_ID,		10},
-	{self.perfume_ID,	10},
-	{self.cotton_ID,	10},
+	{self.tobacco_ID,	25},
+	{self.tea_ID,		25},
+	{self.perfume_ID,	25},
+	{self.cotton_ID,	25},
 	{self.whale_ID,		10},
 	{self.crab_ID,		10},
 	{self.pearls_ID,	10},
@@ -942,11 +944,11 @@ function AssignStartingPlots:__InitLuxuryWeights()
 	{self.tea_ID,		40},
 	{self.perfume_ID,	40},
 	{self.cotton_ID,	40},
-	{self.ivory_ID,		10},
-	{self.wine_ID,		10},
-	{self.olives_ID,	10},
-	{self.coffee_ID,	10},
-	{self.sugar_ID,		10},
+	{self.ivory_ID,		80},
+	{self.wine_ID,		25},
+	{self.olives_ID,	25},
+	{self.coffee_ID,	25},
+	{self.sugar_ID,		60},
 	{self.whale_ID,		10},
 	{self.crab_ID,		10},
 	{self.pearls_ID,	10},
@@ -967,19 +969,19 @@ function AssignStartingPlots:__InitLuxuryWeights()
 	{self.jade_ID,		30},
 	{self.amber_ID,		30},
 	{self.lapis_ID,		30},
-	{self.coffee_ID,	05},
-	{self.tobacco_ID,	05},
-	{self.tea_ID,		05},
-	{self.perfume_ID,	05},
-	{self.cotton_ID,	05},
-	{self.wine_ID,		05},
-	{self.olives_ID,	05},
-	{self.truffles_ID,	05},
-	{self.silk_ID,		05},
-	{self.dye_ID,		05},
-	{self.citrus_ID,	05},
-	{self.cocoa_ID,		05},
-	{self.spices_ID,	05},
+	{self.coffee_ID,	20},
+	{self.tobacco_ID,	20},
+	{self.tea_ID,		20},
+	{self.perfume_ID,	20},
+	{self.cotton_ID,	20},
+	{self.wine_ID,		20},
+	{self.olives_ID,	20},
+	{self.truffles_ID,	20},
+	{self.silk_ID,		20},
+	{self.dye_ID,		20},
+	{self.citrus_ID,	20},
+	{self.cocoa_ID,		20},
+	{self.spices_ID,	20},
 	{self.whale_ID,		20},
 	{self.crab_ID,		20},
 	{self.pearls_ID,	20},
@@ -990,33 +992,37 @@ function AssignStartingPlots:__InitLuxuryWeights()
 		table.insert(self.luxury_region_weights[8], {self.obsidian_ID,	30});
 		table.insert(self.luxury_region_weights[8], {self.platinum_ID,	30});
 		table.insert(self.luxury_region_weights[8], {self.tin_ID,		30});
-		table.insert(self.luxury_region_weights[8], {self.lavender_ID,	05});
-		table.insert(self.luxury_region_weights[8], {self.poppy_ID,		05});
+		table.insert(self.luxury_region_weights[8], {self.lavender_ID,	20});
+		table.insert(self.luxury_region_weights[8], {self.poppy_ID,		20});
 	end
 	-- MOD.HungryForFood: End
 
 	self.luxury_fallback_weights = {			-- Random / Fallback
-	{self.gold_ID,		10},					-- MOD.Barathor: Favor water resources since they work great as randoms and make the coasts more interesting.
-	{self.copper_ID,	10},					--				 Also, slightly favor mined resources for their flexibility.
-	{self.gems_ID,		10},
-	{self.salt_ID,		10},
-	{self.jade_ID,		10},
-	{self.amber_ID,		10},
-	{self.lapis_ID,		10},
-	{self.coffee_ID,	05},
-	{self.tobacco_ID,	05},
-	{self.tea_ID,		05},
-	{self.perfume_ID,	05},
-	{self.cotton_ID,	05},
-	{self.wine_ID,		05},
-	{self.olives_ID,	05},
-	{self.incense_ID,	05},
-	{self.truffles_ID,	05},
-	{self.silk_ID,		05},
-	{self.dye_ID,		05},
-	{self.citrus_ID,	05},
-	{self.cocoa_ID,		05},
-	{self.spices_ID,	05},
+	{self.gold_ID,		25},					-- MOD.Barathor: Favor water resources since they work great as randoms and make the coasts more interesting.
+	{self.silver_ID,	25},					--				 Also, slightly favor mined resources for their flexibility.
+	{self.copper_ID,	25},
+	{self.gems_ID,		25},
+	{self.salt_ID,		25},
+	{self.jade_ID,		25},
+	{self.amber_ID,		25},
+	{self.lapis_ID,		25},
+	{self.coffee_ID,	25},
+	{self.tobacco_ID,	25},
+	{self.tea_ID,		25},
+	{self.perfume_ID,	25},
+	{self.cotton_ID,	25},
+	{self.ivory_ID,		25},
+	{self.wine_ID,		25},
+	{self.olives_ID,	25},
+	{self.incense_ID,	25},
+	{self.truffles_ID,	25},
+	{self.silk_ID,		25},
+	{self.dye_ID,		25},
+	{self.fur_ID,		25},
+	{self.citrus_ID,	25},
+	{self.cocoa_ID,		25},
+	{self.spices_ID,	25},
+	{self.sugar_ID,		25},
 	{self.whale_ID,		30},
 	{self.crab_ID,		30},
 	{self.pearls_ID,	30},
@@ -1024,52 +1030,52 @@ function AssignStartingPlots:__InitLuxuryWeights()
 
 	-- MOD.HungryForFood: Start
 	if self:IsEvenMoreResourcesActive() == true then
-		table.insert(self.luxury_fallback_weights, {self.obsidian_ID,	30});
-		table.insert(self.luxury_fallback_weights, {self.platinum_ID,	30});
-		table.insert(self.luxury_fallback_weights, {self.tin_ID,		30});
-		table.insert(self.luxury_fallback_weights, {self.lavender_ID,	05});
-		table.insert(self.luxury_fallback_weights, {self.poppy_ID,		05});
+		table.insert(self.luxury_fallback_weights, {self.obsidian_ID,	25});
+		table.insert(self.luxury_fallback_weights, {self.platinum_ID,	25});
+		table.insert(self.luxury_fallback_weights, {self.tin_ID,		25});
+		table.insert(self.luxury_fallback_weights, {self.lavender_ID,	25});
+		table.insert(self.luxury_fallback_weights, {self.poppy_ID,		25});
 	end
 	-- MOD.HungryForFood: End
 
 	self.luxury_city_state_weights = {			-- City States
-	{self.gold_ID,		10},
-	{self.silver_ID,	05},					-- MOD.Barathor: Slightly favor water resources since they're flexible and most city-states are coastal.
-	{self.copper_ID,	10},					--				 Also, slightly favor mined resources for their flexibility.
-	{self.gems_ID,		10},
-	{self.salt_ID,		10},
-	{self.jade_ID,		10},
-	{self.amber_ID,		10},
-	{self.lapis_ID,		10},
-	{self.coffee_ID,	05},
-	{self.tobacco_ID,	05},
-	{self.tea_ID,		05},
-	{self.perfume_ID,	05},
-	{self.cotton_ID,	05},
-	{self.ivory_ID,		05},
-	{self.wine_ID,		05},
-	{self.olives_ID,	05},
-	{self.incense_ID,	05},
-	{self.truffles_ID,	05},
-	{self.silk_ID,		05},
-	{self.dye_ID,		05},
-	{self.fur_ID,		05},
-	{self.citrus_ID,	05},
-	{self.cocoa_ID,		05},
-	{self.spices_ID,	05},
-	{self.sugar_ID,		05},
-	{self.whale_ID,		10},
-	{self.crab_ID,		10},
-	{self.pearls_ID,	10},
-	{self.coral_ID,		10},	};
+	{self.gold_ID,		50},
+	{self.silver_ID,	50},					-- MOD.Barathor: Slightly favor water resources since they're flexible and most city-states are coastal.
+	{self.copper_ID,	50},					--				 Also, slightly favor mined resources for their flexibility.
+	{self.gems_ID,		50},
+	{self.salt_ID,		50},
+	{self.jade_ID,		55},
+	{self.amber_ID,		55},
+	{self.lapis_ID,		55},
+	{self.coffee_ID,	60},
+	{self.tobacco_ID,	60},
+	{self.tea_ID,		60},
+	{self.perfume_ID,	60},
+	{self.cotton_ID,	60},
+	{self.ivory_ID,		80},
+	{self.wine_ID,		60},
+	{self.olives_ID,	60},
+	{self.incense_ID,	60},
+	{self.truffles_ID,	60},
+	{self.silk_ID,		60},
+	{self.dye_ID,		60},
+	{self.fur_ID,		60},
+	{self.citrus_ID,	60},
+	{self.cocoa_ID,		60},
+	{self.spices_ID,	60},
+	{self.sugar_ID,		60},
+	{self.whale_ID,		70},
+	{self.crab_ID,		70},
+	{self.pearls_ID,	70},
+	{self.coral_ID,		70},	};
 
 	-- MOD.HungryForFood: Start
 	if self:IsEvenMoreResourcesActive() == true then
-		table.insert(self.luxury_city_state_weights, {self.obsidian_ID,	10});
-		table.insert(self.luxury_city_state_weights, {self.platinum_ID,	10});
-		table.insert(self.luxury_city_state_weights, {self.tin_ID,		10});
-		table.insert(self.luxury_city_state_weights, {self.lavender_ID,	05});
-		table.insert(self.luxury_city_state_weights, {self.poppy_ID,	05});
+		table.insert(self.luxury_city_state_weights, {self.obsidian_ID,	50});
+		table.insert(self.luxury_city_state_weights, {self.platinum_ID,	50});
+		table.insert(self.luxury_city_state_weights, {self.tin_ID,		50});
+		table.insert(self.luxury_city_state_weights, {self.lavender_ID,	60});
+		table.insert(self.luxury_city_state_weights, {self.poppy_ID,	60});
 	end
 	-- MOD.HungryForFood: End
 	-- MOD.Barathor: End
@@ -1122,7 +1128,7 @@ function AssignStartingPlots:MeasureStartPlacementFertilityOfPlot(x, y, checkFor
 	local featureType = plot:GetFeatureType();
 	-- Measure Fertility -- Any cases absent from the process have a 0 value.
 	if plotType == PlotTypes.PLOT_MOUNTAIN then -- Note, mountains cannot belong to a landmass AreaID, so they usually go unmeasured.
-		plotFertility = -2;
+		plotFertility = -1;
 	elseif terrainType == TerrainTypes.TERRAIN_SNOW then
 		plotFertility = -1;
 	elseif featureType == FeatureTypes.FEATURE_OASIS then
@@ -1147,17 +1153,17 @@ function AssignStartingPlots:MeasureStartPlacementFertilityOfPlot(x, y, checkFor
 		if featureType == FeatureTypes.FEATURE_FOREST then
 			plotFertility = plotFertility + 0; -- Removing forest bonus as a balance tweak. -1/26/2011 BT
 		elseif featureType == FeatureTypes.FEATURE_JUNGLE then
-			plotFertility = plotFertility - 1;
+			plotFertility = plotFertility + 0;
 		elseif featureType == FeatureTypes.FEATURE_MARSH then
-			plotFertility = plotFertility - 2; -- Increasing penalty for Marsh plots. -1/26/2011 BT
+			plotFertility = plotFertility + 1; -- Increasing penalty for Marsh plots. -1/26/2011 BT
 		elseif featureType == FeatureTypes.FEATURE_ICE then
 			plotFertility = plotFertility - 1;
 		end
 		if plot:IsRiverSide() then
-			plotFertility = plotFertility + 1;
+			plotFertility = plotFertility + 2;
 		end
 		if plot:IsFreshWater() then
-			plotFertility = plotFertility + 1;
+			plotFertility = plotFertility + 2;
 		end
 		if checkForCoastalLand == true then -- When measuring only one AreaID, this shortcut helps account for coastal plots not measured.
 			if plot:IsCoastalLand() then
@@ -1682,7 +1688,7 @@ function AssignStartingPlots:GenerateRegions(args)
 	-- Determine number of civilizations and city states present in this game.
 	self.iNumCivs, self.iNumCityStates, self.player_ID_list, self.bTeamGame, self.teams_with_major_civs, self.number_civs_per_team = GetPlayerAndTeamInfo()
 	self.iNumCityStatesUnassigned = self.iNumCityStates;
-	--print("-"); print("Civs:", self.iNumCivs); print("City States:", self.iNumCityStates);
+	print("-"); print("Civs:", self.iNumCivs); print("City States:", self.iNumCityStates);
 
 	if self.method == RegionDivision.BIGGEST_LANDMASS then
 		-- Identify the biggest landmass.
@@ -1868,7 +1874,7 @@ function AssignStartingPlots:GenerateRegions(args)
 			-- Loop through areas, find the one with the best remaining fertility (civs added
 			-- to a landmass reduces its fertility rating for subsequent civs).
 			--
-			--print("- - Searching landmasses in order to place Civ #", civToAssign); print("-");
+			print("- - Searching landmasses in order to place Civ #", civToAssign); print("-");
 			for area_loop, AreaID in ipairs(best_areas) do
 				--local thisLandmassCurrentFertility = land_area_fert[AreaID] / (1 + numberOfCivsPerArea[area_loop]);
 				-- assume 80% of fertility is in relevant land areas
@@ -1878,7 +1884,7 @@ function AssignStartingPlots:GenerateRegions(args)
 					bestRemainingFertility = thisLandmassCurrentFertility;
 					bestAreaTableIndex = area_loop;
 					--
-					-- print("- Found new candidate landmass with Area ID#:", bestRemainingArea, " with fertility of ", bestRemainingFertility);
+					print("- Found new candidate landmass with Area ID#:", bestRemainingArea, " with fertility of ", bestRemainingFertility);
 				end
 			end
 			if bestRemainingArea == -1 then
@@ -1892,7 +1898,7 @@ function AssignStartingPlots:GenerateRegions(args)
 			if TestMembership(inhabitedAreaIDs, bestRemainingArea) == false then
 				table.insert(inhabitedAreaIDs, bestRemainingArea);
 			end
-			--print("Civ #", civToAssign, "has been assigned to Area#", bestRemainingArea); print("-");
+			print("Civ #", civToAssign, "has been assigned to Area#", bestRemainingArea); print("-");
 		end
 		--print("-"); print("--- End of Initial Readout ---"); print("-");
 
@@ -2118,7 +2124,7 @@ function AssignStartingPlots:MeasureTerrainInRegions()
 		-- Add array to the data table.
 		table.insert(self.regionTerrainCounts, regionCounts);
 
-		--[[ Activate printout only for debugging.
+		-- Activate printout only for debugging.
 		print("-");
 		print("--- Region Terrain Measurements for Region #", region_loop, "---");
 		print("Total Plots: ", totalPlots);
@@ -2151,7 +2157,7 @@ function AssignStartingPlots:MeasureTerrainInRegions()
 		print("Plots Along Oceans: ", coastalLandCount);
 		print("Plots Next To Plots Along Oceans: ", nextToCoastCount);
 		print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
-		--]]
+		--
 	end
 end
 ------------------------------------------------------------------------------
@@ -2219,8 +2225,8 @@ function AssignStartingPlots:DetermineRegionTypes()
 		local jungle_percent = 0.20
 		local forest_percent = 0.25
 		local hills_percent  = 0.30
-		local plains_percent = 0.30
-		local grass_percent  = 0.30
+		local plains_percent = 0.40
+		local grass_percent  = 0.40
 
 		-- MOD.Barathor: This variable will decrement until a region is assigned; starts off very high.
 		local adjustment     = 0.50
@@ -2311,11 +2317,11 @@ function AssignStartingPlots:DetermineRegionTypes()
 		end
 
 		-- MOD.Barathor: New data for very useful debug printouts.
-		--print("Threshold Values:")
-		--print(string.format("Desert: %.2f - Tundra: %.2f - Jungle: %.2f - Forest: %.2f - Hills: %.2f - Plains: %.2f - Grass: %.2f", desert_percent, tundra_percent, jungle_percent, forest_percent, hills_percent, plains_percent, grass_percent))
-		--print("Region Values:")
-		--print(string.format("Desert: %.2f - Tundra: %.2f - Jungle: %.2f - Forest: %.2f - Hills: %.2f - Plains: %.2f - Grass: %.2f", desertCount / areaPlots, tundraCount / areaPlots, jungleCount / areaPlots, forestCount / areaPlots, hillsCount / areaPlots, plainsCount / areaPlots, grassCount / areaPlots))
-		--print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+		print("Threshold Values:")
+		print(string.format("Desert: %.2f - Tundra: %.2f - Jungle: %.2f - Forest: %.2f - Hills: %.2f - Plains: %.2f - Grass: %.2f", desert_percent, tundra_percent, jungle_percent, forest_percent, hills_percent, plains_percent, grass_percent))
+		print("Region Values:")
+		print(string.format("Desert: %.2f - Tundra: %.2f - Jungle: %.2f - Forest: %.2f - Hills: %.2f - Plains: %.2f - Grass: %.2f", desertCount / areaPlots, tundraCount / areaPlots, jungleCount / areaPlots, forestCount / areaPlots, hillsCount / areaPlots, plainsCount / areaPlots, grassCount / areaPlots))
+		print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
 
 	end
 
@@ -2606,10 +2612,11 @@ function AssignStartingPlots:MeasureSinglePlot(x, y, region_type)
 	end
 
 	if featureType == FeatureTypes.FEATURE_JUNGLE then -- Jungles are Food, Good, except in Grass regions.
-		if region_type ~= RegionTypes.REGION_GRASSLAND then
+		--if region_type ~= RegionTypes.REGION_GRASSLAND then
 			data[1] = true;
 			data[3] = true;
-		elseif plotType == PlotTypes.PLOT_HILLS then -- Jungle hill, in grass region, count as Prod but not Good.
+		--elseif plotType == PlotTypes.PLOT_HILLS then -- Jungle hill, in grass region, count as Prod but not Good.
+		if plotType == PlotTypes.PLOT_HILLS then -- Jungle hill, in grass region, count as Prod but not Good.
 			data[2] = true;
 		end
 		return data
@@ -2631,6 +2638,8 @@ function AssignStartingPlots:MeasureSinglePlot(x, y, region_type)
 		data[3] = true;
 		return data
 	elseif featureType == FeatureTypes.FEATURE_MARSH then -- Marsh are ignored.
+		data[1] = true;
+		data[3] = true;
 		return data
 	end
 
@@ -3120,7 +3129,7 @@ function AssignStartingPlots:FindStart(region_number)
 	local iNumMiddleInlandDry = table.maxn(middle_inland_dry);
 	local iNumOuter = table.maxn(outer_plots);
 
-	--[[ Debug printout.
+	-- Debug printout.
 	print("-");
 	print("--- Number of Candidate Plots in Region #", region_number, " - Region Type:", region_type, " ---");
 	print("-");
@@ -3138,7 +3147,7 @@ function AssignStartingPlots:FindStart(region_number)
 	print("-");
 	print("Disqualified, two plots away from salt water: ", iNumDisqualified);
 	print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
-	]]--
+	--
 
 	-- Process lists of candidate plots.
 	if iNumCenter + iNumMiddle > 0 then
@@ -3444,7 +3453,7 @@ function AssignStartingPlots:FindCoastalStart(region_number)
 	local iNumMiddleDry = table.maxn(middle_dry_plots);
 	local iNumOuterCoastal = table.maxn(outer_coastal_plots);
 
-	--[[ Debug printout.
+	-- Debug printout.
 	print("-");
 	print("--- Number of Candidate Plots next to an ocean in Region #", region_number, " - Region Type:", region_type, " ---");
 	print("-");
@@ -3460,7 +3469,7 @@ function AssignStartingPlots:FindCoastalStart(region_number)
 	print("-");
 	print("Coastal Plots in Outer area: ", iNumOuterCoastal);
 	print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
-	]]--
+	--
 
 	-- Process lists of candidate plots.
 	if iNumCenterCoastal + iNumMiddleCoastal > 0 then
@@ -3730,7 +3739,7 @@ function AssignStartingPlots:FindStartWithoutRegardToAreaID(region_number, bMust
 		end
 	end
 
-	--[[ Debug printout.
+	-- Debug printout.
 	print("-");
 	print("--- Number of Candidate Plots in each landmass in Region #", region_number, " - Region Type:", region_type, " ---");
 	print("-");
@@ -3740,7 +3749,7 @@ function AssignStartingPlots:FindStartWithoutRegardToAreaID(region_number, bMust
 		print("* Area ID#", iAreaID, "has fertility rating of", fert_rating, "and candidate plot count of", plotCount); print("-");
 	end
 	print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
-	]]--
+	--
 
 	-- Now iterate through areas, from best fertility downward, looking for a site good enough to choose.
 	for loop, iAreaID in ipairs(best_areas) do
@@ -4416,6 +4425,7 @@ function AssignStartingPlots:NormalizeStartLocation(region_number)
 					iNumNativeTwoFoodFirstRing = iNumNativeTwoFoodFirstRing + 1;
 				elseif featureType == FeatureTypes.FEATURE_FOREST then
 					forestCount = forestCount + 1;
+					iNumNativeTwoFoodFirstRing = iNumNativeTwoFoodFirstRing + 1;
 				end
 				if searchPlot:IsRiver() then
 					nearRiver = true;
@@ -4426,6 +4436,7 @@ function AssignStartingPlots:NormalizeStartLocation(region_number)
 						innerTwoFood = innerTwoFood + 1;
 						innerCanHaveBonus = innerCanHaveBonus + 1;
 					elseif featureType == FeatureTypes.FEATURE_FOREST then
+						innerTwoFood = innerTwoFood + 1;
 						innerCanHaveBonus = innerCanHaveBonus + 1;
 --					elseif terrainType == TerrainTypes.TERRAIN_GRASS then
 --						iNumGrass = iNumGrass + 1;
@@ -4439,9 +4450,9 @@ function AssignStartingPlots:NormalizeStartLocation(region_number)
 					if terrainType == TerrainTypes.TERRAIN_GRASS then
 						innerFourFood = innerFourFood + 1;
 						iNumGrass = iNumGrass + 1;
-						if featureType ~= FeatureTypes.FEATURE_MARSH then
+						--if featureType ~= FeatureTypes.FEATURE_MARSH then
 							innerCanHaveBonus = innerCanHaveBonus + 1;
-						end
+						--end
 						if featureType == FeatureTypes.FEATURE_FOREST then
 							innerForest = innerForest + 1;
 						end
@@ -4471,6 +4482,7 @@ function AssignStartingPlots:NormalizeStartLocation(region_number)
 					elseif terrainType == TerrainTypes.TERRAIN_DESERT then
 						innerBadTiles = innerBadTiles + 1;
 						innerCanHaveBonus = innerCanHaveBonus + 1; -- Can have Oasis.
+						innerTwoFood = innerTwoFood + 1;
 						desertCount = desertCount + 1;
 					else -- Snow
 						innerBadTiles = innerBadTiles + 1;
@@ -4479,9 +4491,9 @@ function AssignStartingPlots:NormalizeStartLocation(region_number)
 					if terrainType == TerrainTypes.TERRAIN_GRASS then
 						innerThreeFood = innerThreeFood + 1;
 						iNumGrass = iNumGrass + 1;
-						if featureType ~= FeatureTypes.FEATURE_MARSH then
+						--if featureType ~= FeatureTypes.FEATURE_MARSH then
 							innerCanHaveBonus = innerCanHaveBonus + 1;
-						end
+						--end
 						if featureType == FeatureTypes.FEATURE_FOREST then
 							innerForest = innerForest + 1;
 						end
@@ -4563,6 +4575,7 @@ function AssignStartingPlots:NormalizeStartLocation(region_number)
 					iNumNativeTwoFoodSecondRing = iNumNativeTwoFoodSecondRing + 1;
 				elseif featureType == FeatureTypes.FEATURE_FOREST then
 					forestCount = forestCount + 1;
+					iNumNativeTwoFoodSecondRing = iNumNativeTwoFoodSecondRing + 1;
 				end
 				if searchPlot:IsRiver() then
 					nearRiver = true;
@@ -4573,6 +4586,7 @@ function AssignStartingPlots:NormalizeStartLocation(region_number)
 						outerTwoFood = outerTwoFood + 1;
 						outerCanHaveBonus = outerCanHaveBonus + 1;
 					elseif featureType == FeatureTypes.FEATURE_FOREST then
+						outerTwoFood = outerTwoFood + 1;
 						outerCanHaveBonus = outerCanHaveBonus + 1;
 --					elseif terrainType == TerrainTypes.TERRAIN_GRASS then
 --						iNumGrass = iNumGrass + 1;
@@ -4586,9 +4600,9 @@ function AssignStartingPlots:NormalizeStartLocation(region_number)
 					if terrainType == TerrainTypes.TERRAIN_GRASS then
 						outerFourFood = outerFourFood + 1;
 						iNumGrass = iNumGrass + 1;
-						if featureType ~= FeatureTypes.FEATURE_MARSH then
+						--if featureType ~= FeatureTypes.FEATURE_MARSH then
 							outerCanHaveBonus = outerCanHaveBonus + 1;
-						end
+						--end
 						if featureType == FeatureTypes.FEATURE_FOREST then
 							outerForest = outerForest + 1;
 						end
@@ -4617,6 +4631,7 @@ function AssignStartingPlots:NormalizeStartLocation(region_number)
 						end
 					elseif terrainType == TerrainTypes.TERRAIN_DESERT then
 						outerBadTiles = outerBadTiles + 1;
+						outerTwoFood = outerTwoFood + 1;
 						outerCanHaveBonus = outerCanHaveBonus + 1; -- Can have Oasis.
 						desertCount = desertCount + 1;
 					else -- Snow
@@ -4626,9 +4641,9 @@ function AssignStartingPlots:NormalizeStartLocation(region_number)
 					if terrainType == TerrainTypes.TERRAIN_GRASS then
 						outerThreeFood = outerThreeFood + 1;
 						iNumGrass = iNumGrass + 1;
-						if featureType ~= FeatureTypes.FEATURE_MARSH then
+						--if featureType ~= FeatureTypes.FEATURE_MARSH then
 							outerCanHaveBonus = outerCanHaveBonus + 1;
-						end
+						--end
 						if featureType == FeatureTypes.FEATURE_FOREST then
 							outerForest = outerForest + 1;
 						end
@@ -5149,7 +5164,7 @@ function AssignStartingPlots:BalanceAndAssign()
 	-- If they are to be disabled, then all civs are simply assigned to start plots at random.
 	local bDisableStartBias = Game.GetCustomOption("GAMEOPTION_DISABLE_START_BIAS");
 	if bDisableStartBias == 1 then
-		--print("-"); print("ALERT: Civ Start Biases have been selected to be Disabled!"); print("-");
+		print("-"); print("ALERT: Civ Start Biases have been selected to be Disabled!"); print("-");
 		local playerList = {};
 		for loop = 1, self.iNumCivs do
 			local player_ID = self.player_ID_list[loop];
@@ -5306,7 +5321,7 @@ function AssignStartingPlots:BalanceAndAssign()
 		for region_number, bAlreadyAssigned in ipairs(region_status) do
 			if bAlreadyAssigned == false then
 				if self.startLocationConditions[region_number][1] == true then
-					--print("Region#", region_number, "has a Coastal Start.");
+					print("Region#", region_number, "has a Coastal Start.");
 					iNumRegionsWithCoastalStart = iNumRegionsWithCoastalStart + 1;
 					table.insert(regions_with_coastal_start, region_number);
 				end
@@ -5317,7 +5332,7 @@ function AssignStartingPlots:BalanceAndAssign()
 				if bAlreadyAssigned == false then
 					if self.startLocationConditions[region_number][2] == true and
 					   self.startLocationConditions[region_number][1] == false then
-						--print("Region#", region_number, "has a Lake Start.");
+						print("Region#", region_number, "has a Lake Start.");
 						iNumRegionsWithLakeStart = iNumRegionsWithLakeStart + 1;
 						table.insert(regions_with_lake_start, region_number);
 					end
@@ -5373,7 +5388,7 @@ function AssignStartingPlots:BalanceAndAssign()
 			end
 			for loop, playerNum in ipairs(shuffled_coastal_civs) do
 				if loop > iNumCoastalCivs - iNumUnassignableCoastStarts then
-					--print("Ran out of Coastal and Lake start locations to assign to Coastal Bias.");
+					print("Ran out of Coastal and Lake start locations to assign to Coastal Bias.");
 					break
 				end
 				-- Assign next randomly chosen civ in line to next randomly chosen eligible region.
@@ -5385,7 +5400,7 @@ function AssignStartingPlots:BalanceAndAssign()
 					local plot = Map.GetPlot(x, y);
 					local player = Players[playerNum];
 					player:SetStartingPlot(plot);
-					--print("Player Number", playerNum, "assigned a COASTAL START BIAS location in Region#", choose_this_region, "at Plot", x, y);
+					print("Player Number", playerNum, "assigned a COASTAL START BIAS location in Region#", choose_this_region, "at Plot", x, y);
 					region_status[choose_this_region] = true;
 					civ_status[playerNum + 1] = true;
 					iNumCoastalCivsRemaining = iNumCoastalCivsRemaining - 1;
@@ -5405,7 +5420,7 @@ function AssignStartingPlots:BalanceAndAssign()
 					local plot = Map.GetPlot(x, y);
 					local player = Players[playerNum];
 					player:SetStartingPlot(plot);
-					--print("Player Number", playerNum, "with Coastal Bias assigned a fallback Lake location in Region#", choose_this_region, "at Plot", x, y);
+					print("Player Number", playerNum, "with Coastal Bias assigned a fallback Lake location in Region#", choose_this_region, "at Plot", x, y);
 					region_status[choose_this_region] = true;
 					civ_status[playerNum + 1] = true;
 					iNumCoastalCivsRemaining = iNumCoastalCivsRemaining - 1;
@@ -5462,7 +5477,7 @@ function AssignStartingPlots:BalanceAndAssign()
 			end
 			for loop, playerNum in ipairs(shuffled_river_civs) do
 				if loop > iNumRiverCivs - iNumUnassignableRiverStarts then
-					--print("Ran out of River and Near-River start locations to assign to River Bias.");
+					print("Ran out of River and Near-River start locations to assign to River Bias.");
 					break
 				end
 				-- Assign next randomly chosen civ in line to next randomly chosen eligible region.
@@ -5474,7 +5489,7 @@ function AssignStartingPlots:BalanceAndAssign()
 					local plot = Map.GetPlot(x, y);
 					local player = Players[playerNum];
 					player:SetStartingPlot(plot);
-					--print("Player Number", playerNum, "assigned a RIVER START BIAS location in Region#", choose_this_region, "at Plot", x, y);
+					print("Player Number", playerNum, "assigned a RIVER START BIAS location in Region#", choose_this_region, "at Plot", x, y);
 					region_status[choose_this_region] = true;
 					civ_status[playerNum + 1] = true;
 					local a, b, c = IdentifyTableIndex(regions_still_available, choose_this_region)
@@ -5489,7 +5504,7 @@ function AssignStartingPlots:BalanceAndAssign()
 					local plot = Map.GetPlot(x, y);
 					local player = Players[playerNum];
 					player:SetStartingPlot(plot);
-					--print("Player Number", playerNum, "with River Bias assigned a fallback 'near river' location in Region#", choose_this_region, "at Plot", x, y);
+					print("Player Number", playerNum, "with River Bias assigned a fallback 'near river' location in Region#", choose_this_region, "at Plot", x, y);
 					region_status[choose_this_region] = true;
 					civ_status[playerNum + 1] = true;
 					local a, b, c = IdentifyTableIndex(regions_still_available, choose_this_region)
@@ -5532,7 +5547,7 @@ function AssignStartingPlots:BalanceAndAssign()
 				end
 				for loop, playerNum in ipairs(shuffled_coastal_fallback_civs) do
 					if loop > iNumFallbacksWithRiverStart + iNumFallbacksNearRiverStart then
-						--print("Ran out of River and Near-River start locations to assign as fallbacks for Coastal Bias.");
+						print("Ran out of River and Near-River start locations to assign as fallbacks for Coastal Bias.");
 						break
 					end
 					-- Assign next randomly chosen civ in line to next randomly chosen eligible region.
@@ -5544,7 +5559,7 @@ function AssignStartingPlots:BalanceAndAssign()
 						local plot = Map.GetPlot(x, y);
 						local player = Players[playerNum];
 						player:SetStartingPlot(plot);
-						--print("Player Number", playerNum, "with Coastal Bias assigned a fallback river location in Region#", choose_this_region, "at Plot", x, y);
+						print("Player Number", playerNum, "with Coastal Bias assigned a fallback river location in Region#", choose_this_region, "at Plot", x, y);
 						region_status[choose_this_region] = true;
 						civ_status[playerNum + 1] = true;
 						local a, b, c = IdentifyTableIndex(regions_still_available, choose_this_region)
@@ -5559,7 +5574,7 @@ function AssignStartingPlots:BalanceAndAssign()
 						local plot = Map.GetPlot(x, y);
 						local player = Players[playerNum];
 						player:SetStartingPlot(plot);
-						--print("Player Number", playerNum, "with Coastal Bias assigned a fallback 'near river' location in Region#", choose_this_region, "at Plot", x, y);
+						print("Player Number", playerNum, "with Coastal Bias assigned a fallback 'near river' location in Region#", choose_this_region, "at Plot", x, y);
 						region_status[choose_this_region] = true;
 						civ_status[playerNum + 1] = true;
 						local a, b, c = IdentifyTableIndex(regions_still_available, choose_this_region)
@@ -5574,7 +5589,7 @@ function AssignStartingPlots:BalanceAndAssign()
 
 	-- Handle Region Priority
 	if iNumPriorityCivs > 0 then
-		--print("-"); print("-"); print("--- REGION PRIORITY READOUT ---"); print("-");
+		print("-"); print("-"); print("--- REGION PRIORITY READOUT ---"); print("-");
 		local iNumSinglePriority, iNumMultiPriority, iNumNeedFallbackPriority = 0, 0, 0;
 		local single_priority, multi_priority, fallback_priority = {}, {}, {};
 		local single_sorted, multi_sorted = {}, {};
@@ -5582,12 +5597,12 @@ function AssignStartingPlots:BalanceAndAssign()
 		for playerNum, priority_needs in pairs(priority_lists) do
 			local len = table.maxn(priority_needs)
 			if len == 1 then
-				--print("Player#", playerNum, "has a single Region Priority of type", priority_needs[1]);
+				print("Player#", playerNum, "has a single Region Priority of type", priority_needs[1]);
 				local priority_data = {playerNum, priority_needs[1]};
 				table.insert(single_priority, priority_data)
 				iNumSinglePriority = iNumSinglePriority + 1;
 			else
-				--print("Player#", playerNum, "has multiple Region Priority, this many types:", len);
+				print("Player#", playerNum, "has multiple Region Priority, this many types:", len);
 				local priority_data = {playerNum, len};
 				table.insert(multi_priority, priority_data)
 				iNumMultiPriority = iNumMultiPriority + 1;
@@ -5599,7 +5614,7 @@ function AssignStartingPlots:BalanceAndAssign()
 			for region_type = 1, NUM_REGION_TYPES - 1 do
 				for loop, data in ipairs(single_priority) do
 					if data[2] == region_type then
-						--print("Adding Player#", data[1], "to sorted list of single Region Priority.");
+						print("Adding Player#", data[1], "to sorted list of single Region Priority.");
 						table.insert(single_sorted, data);
 					end
 				end
@@ -5608,13 +5623,13 @@ function AssignStartingPlots:BalanceAndAssign()
 			for loop, data in ipairs(single_sorted) do
 				local iPlayerNum = data[1];
 				local iPriorityType = data[2];
-				--print("* Attempting to assign Player#", iPlayerNum, "to a region of Type#", iPriorityType);
+				print("* Attempting to assign Player#", iPlayerNum, "to a region of Type#", iPriorityType);
 				local bFoundCandidate, candidate_regions = false, {};
 				for test_loop, region_number in ipairs(regions_still_available) do
 					if self.regionTypes[region_number] == iPriorityType then
 						table.insert(candidate_regions, region_number);
 						bFoundCandidate = true;
-						--print("- - Found candidate: Region#", region_number);
+						print("- - Found candidate: Region#", region_number);
 					end
 				end
 				if bFoundCandidate then
@@ -5625,7 +5640,7 @@ function AssignStartingPlots:BalanceAndAssign()
 					local plot = Map.GetPlot(x, y);
 					local player = Players[iPlayerNum];
 					player:SetStartingPlot(plot);
-					--print("Player Number", iPlayerNum, "with single Region Priority assigned to Region#", choose_this_region, "at Plot", x, y);
+					print("Player Number", iPlayerNum, "with single Region Priority assigned to Region#", choose_this_region, "at Plot", x, y);
 					region_status[choose_this_region] = true;
 					civ_status[iPlayerNum + 1] = true;
 					local a, b, c = IdentifyTableIndex(regions_still_available, choose_this_region)
@@ -5635,7 +5650,7 @@ function AssignStartingPlots:BalanceAndAssign()
 				else
 					table.insert(fallback_priority, data)
 					iNumNeedFallbackPriority = iNumNeedFallbackPriority + 1;
-					--print("Player Number", iPlayerNum, "with single Region Priority was UNABLE to be matched to its type. Added to fallback list.");
+					print("Player Number", iPlayerNum, "with single Region Priority was UNABLE to be matched to its type. Added to fallback list.");
 				end
 			end
 		end
@@ -5644,7 +5659,7 @@ function AssignStartingPlots:BalanceAndAssign()
 			for iNumPriorities = 2, 8 do						-- Must expand if new region types are added.
 				for loop, data in ipairs(multi_priority) do
 					if data[2] == iNumPriorities then
-						--print("Adding Player#", data[1], "to sorted list of multi Region Priority.");
+						print("Adding Player#", data[1], "to sorted list of multi Region Priority.");
 						table.insert(multi_sorted, data);
 					end
 				end
@@ -5653,7 +5668,7 @@ function AssignStartingPlots:BalanceAndAssign()
 			for loop, data in ipairs(multi_sorted) do
 				local iPlayerNum = data[1];
 				local iNumPriorityTypes = data[2];
-				--print("* Attempting to assign Player#", iPlayerNum, "to one of its Priority Region Types.");
+				print("* Attempting to assign Player#", iPlayerNum, "to one of its Priority Region Types.");
 				local bFoundCandidate, candidate_regions = false, {};
 				for test_loop, region_number in ipairs(regions_still_available) do
 					for inner_loop = 1, iNumPriorityTypes do
@@ -5661,7 +5676,7 @@ function AssignStartingPlots:BalanceAndAssign()
 						if self.regionTypes[region_number] == region_type_to_test then
 							table.insert(candidate_regions, region_number);
 							bFoundCandidate = true;
-							--print("- - Found candidate: Region#", region_number);
+							print("- - Found candidate: Region#", region_number);
 						end
 					end
 				end
@@ -5673,7 +5688,7 @@ function AssignStartingPlots:BalanceAndAssign()
 					local plot = Map.GetPlot(x, y);
 					local player = Players[iPlayerNum];
 					player:SetStartingPlot(plot);
-					--print("Player Number", iPlayerNum, "with multiple Region Priority assigned to Region#", choose_this_region, "at Plot", x, y);
+					print("Player Number", iPlayerNum, "with multiple Region Priority assigned to Region#", choose_this_region, "at Plot", x, y);
 					region_status[choose_this_region] = true;
 					civ_status[iPlayerNum + 1] = true;
 					local a, b, c = IdentifyTableIndex(regions_still_available, choose_this_region)
@@ -5690,17 +5705,17 @@ function AssignStartingPlots:BalanceAndAssign()
 			for loop, data in ipairs(fallback_priority) do
 				local iPlayerNum = data[1];
 				local iPriorityType = data[2];
-				--print("* Attempting to assign Player#", iPlayerNum, "to a fallback region as similar as possible to Region Type#", iPriorityType);
+				print("* Attempting to assign Player#", iPlayerNum, "to a fallback region as similar as possible to Region Type#", iPriorityType);
 				local choose_this_region = self:FindFallbackForUnmatchedRegionPriority(iPriorityType, regions_still_available)
 				if choose_this_region == -1 then
-					--print("FAILED to find fallback region bias for player#", iPlayerNum);
+					print("FAILED to find fallback region bias for player#", iPlayerNum);
 				else
 					local x = self.startingPlots[choose_this_region][1];
 					local y = self.startingPlots[choose_this_region][2];
 					local plot = Map.GetPlot(x, y);
 					local player = Players[iPlayerNum];
 					player:SetStartingPlot(plot);
-					--print("Player Number", iPlayerNum, "with single Region Priority assigned to FALLBACK Region#", choose_this_region, "at Plot", x, y);
+					print("Player Number", iPlayerNum, "with single Region Priority assigned to FALLBACK Region#", choose_this_region, "at Plot", x, y);
 					region_status[choose_this_region] = true;
 					civ_status[iPlayerNum + 1] = true;
 					local a, b, c = IdentifyTableIndex(regions_still_available, choose_this_region)
@@ -5714,12 +5729,12 @@ function AssignStartingPlots:BalanceAndAssign()
 
 	-- Handle Region Avoid
 	if iNumAvoidCivs > 0 then
-		--print("-"); print("-"); print("--- REGION AVOID READOUT ---"); print("-");
+		print("-"); print("-"); print("--- REGION AVOID READOUT ---"); print("-");
 		local avoid_sorted, avoid_unsorted, avoid_counts = {}, {}, {};
 		-- Sort list of civs with Avoid needs, then process in reverse order, so most needs goes first.
 		for playerNum, avoid_needs in pairs(avoid_lists) do
 			local len = table.maxn(avoid_needs)
-			--print("- Player#", playerNum, "has this number of Region Avoid needs:", len);
+			print("- Player#", playerNum, "has this number of Region Avoid needs:", len);
 			local avoid_data = {playerNum, len};
 			table.insert(avoid_unsorted, avoid_data)
 			table.insert(avoid_counts, len)
@@ -5746,7 +5761,7 @@ function AssignStartingPlots:BalanceAndAssign()
 				end
 				if bFoundCandidate == true then
 					table.insert(candidate_regions, region_number);
-					--print("- - Found candidate: Region#", region_number)
+					print("- - Found candidate: Region#", region_number)
 				end
 			end
 			if table.maxn(candidate_regions) > 0 then
@@ -5757,7 +5772,7 @@ function AssignStartingPlots:BalanceAndAssign()
 				local plot = Map.GetPlot(x, y);
 				local player = Players[iPlayerNum];
 				player:SetStartingPlot(plot);
-				--print("Player Number", iPlayerNum, "with Region Avoid assigned to allowed region type in Region#", choose_this_region, "at Plot", x, y);
+				print("Player Number", iPlayerNum, "with Region Avoid assigned to allowed region type in Region#", choose_this_region, "at Plot", x, y);
 				region_status[choose_this_region] = true;
 				civ_status[iPlayerNum + 1] = true;
 				local a, b, c = IdentifyTableIndex(regions_still_available, choose_this_region)
@@ -5798,7 +5813,7 @@ function AssignStartingPlots:BalanceAndAssign()
 			local region_number = regionList[index];
 			local x = self.startingPlots[region_number][1];
 			local y = self.startingPlots[region_number][2];
-			--print("Now placing Player#", player_ID, "in Region#", region_number, "at start plot:", x, y);
+			print("Now placing Player#", player_ID, "in Region#", region_number, "at start plot:", x, y);
 			local start_plot = Map.GetPlot(x, y)
 			local player = Players[player_ID]
 			player:SetStartingPlot(start_plot)
@@ -5825,13 +5840,20 @@ function AssignStartingPlots:ExaminePlotForNaturalWondersEligibility(x, y)
 	local iW, iH = Map.GetGridSize();
 	local plotIndex = iW * y + x + 1;
 
+	-- adan_eslavo, start (top and bottom rows are not targetted)
+	if (not Map.IsWrapY() and (y == 0 or y == iH - 1)) or (not Map.IsWrapX() and (x == 0 or x == iW - 1)) then
+		return false, false;
+	end
+	-- adan_eslavo, end
+
 	-- Check for collision with player starts
 	if self.impactData[ImpactLayers.LAYER_NATURAL_WONDER][plotIndex] > 0 then
 		return false, false;
 	end
 
-	-- Must have land in workable range
 	local plot = Map.GetPlot(x, y);
+
+	-- Must have land in workable range
 	local hasLand = false;
 	for nearPlot in self:Plot_GetPlotsInCircle(plot, 1, 3) do
 		if nearPlot:GetPlotType() == PlotTypes.PLOT_LAND then
@@ -5842,14 +5864,17 @@ function AssignStartingPlots:ExaminePlotForNaturalWondersEligibility(x, y)
 		return false, false;
 	end
 
+	-- adan_eslavo, start (fertility rework; was range=3; was 20/28); I use different algorithms than Fertility, so it's disabled now (all tiles are taken into account)
 	-- Check the location is a decent city site, otherwise the wonderID is pointless
-	local fertility = self:Plot_GetFertilityInRange(plot, 3);
-	if fertility < 20 then
+	local fertility = self:Plot_GetFertilityInRange(plot, 1);
+	--print("Plot:", x, y, "fertility=", fertility)
+	if fertility < 0 then
 		return false, false;
-	elseif fertility < 28 then
+	elseif fertility < 0 then
 		return false, true;
 	end
 	return true, true;
+	-- adan_eslavo, end
 end
 ------------------------------------------------------------------------------
 function AssignStartingPlots:ExamineCandidatePlotForNaturalWondersEligibility(x, y)
@@ -5859,6 +5884,7 @@ function AssignStartingPlots:ExamineCandidatePlotForNaturalWondersEligibility(x,
 	if self:ExaminePlotForNaturalWondersEligibility(x, y) == false then
 		return false
 	end
+
 	-- local iW, iH = Map.GetGridSize();
 	-- Now loop through adjacent plots. Using Map.PlotDirection() in combination with
 	-- direction types, an alternate first-ring hex adjustment method, instead of the
@@ -6023,7 +6049,7 @@ function AssignStartingPlots:CanBeThisNaturalWonderType(x, y, wn, rn)
 	if self.AdjacentTilesCareAboutPlotTypes[wn] == true then
 		local iNumAnyLand, iNumFlatland, iNumHills, iNumMountain, iNumHillsPlusMountains, iNumOcean = 0, 0, 0, 0, 0, 0;
 		for loop, direction in ipairs(self.direction_types) do
-			local adjPlot = Map.PlotDirection(x, y, direction)
+			local adjPlot = Map.PlotDirection(x, y, direction);
 			local plotType = adjPlot:GetPlotType();
 			if plotType == PlotTypes.PLOT_OCEAN then
 				iNumOcean = iNumOcean + 1;
@@ -6479,7 +6505,7 @@ function AssignStartingPlots:GenerateNaturalWondersCandidatePlotLists(target_num
 	self.wonder_list = table.fill(-1, self.iNumNW);
 	local next_wonder_number = 1;
 	for row in GameInfo.Features() do
-		if (row.NaturalWonder == true or row.PseudoNaturalWonder == 1) then
+		if (row.NaturalWonder == true or row.PseudoNaturalWonder == 1) then -- adan_eslavo
 			self.wonder_list[next_wonder_number] = row.Type;
 			next_wonder_number = next_wonder_number + 1;
 		end
@@ -6578,10 +6604,10 @@ function AssignStartingPlots:GenerateNaturalWondersCandidatePlotLists(target_num
 	for loop = 1, self.iNumNW do
 		if isNWPicked[loop] then
 			table.insert(chosen_NW, loop);
-			--print("Chosen:", self.wonder_list[loop]);
+			print("Chosen:", self.wonder_list[loop]);
 		elseif iCanBeWonder[loop] > 0 and NW_frequency[loop] > 0 then
 			table.insert(fallback_NW, loop);
-			--print("Fallback:", self.wonder_list[loop]);
+			print("Fallback:", self.wonder_list[loop]);
 		end
 	end
 
@@ -6663,7 +6689,7 @@ function AssignStartingPlots:AttemptToPlaceNaturalWonder(wonder_number, row_numb
 			table.insert(self.placed_natural_wonder, wonder_number);
 
 			-- Natural Wonders shouldn't be too close to each other.
-			self:PlaceResourceImpact(x, y, ImpactLayers.LAYER_NATURAL_WONDER, 11);
+			self:PlaceResourceImpact(x, y, ImpactLayers.LAYER_NATURAL_WONDER, 9); -- adan_eslavo
 
 			-- Force no resource on Natural Wonders.
 			self:PlaceStrategicResourceImpact(x, y, 0);
@@ -6680,18 +6706,134 @@ function AssignStartingPlots:AttemptToPlaceNaturalWonder(wonder_number, row_numb
 
 			-- MOD.Barathor: Fixed: Added a check for the Great Barrier Reef being placed.  If so, it appropriately applies impact values to its second tile to avoid buggy collisions with water resources.
 			-- MOD.Barathor: Start
-			if (self.wonder_list[wonder_number] == "FEATURE_REEF") then
-				--print("Great Barrier Reef placed... applying impact values to its southeast tile as well.")
-				local SEPlot = Map.PlotDirection(x, y, DirectionTypes.DIRECTION_SOUTHEAST)
-				local southeastX = SEPlot:GetX()
-				local southeastY = SEPlot:GetY()
-				self:PlaceStrategicResourceImpact(southeastX, southeastY, 0);
-				self:PlaceResourceImpact(southeastX, southeastY, ImpactLayers.LAYER_LUXURY, 0);
-				self:PlaceResourceImpact(southeastX, southeastY, ImpactLayers.LAYER_BONUS, 0);
-				self:PlaceResourceImpact(southeastX, southeastY, ImpactLayers.LAYER_FISH, 0);
-				self:PlaceResourceImpact(southeastX, southeastY, ImpactLayers.LAYER_MARBLE, 0);
-				local SEplotIndex = southeastY * iW + southeastX + 1
-				self.playerCollisionData[SEplotIndex] = true				-- Record exact plot of wonder in the collision list.
+			-- MOD.adan_eslavo: adaptation to 3-tile GBR (now tiles around center blocked);
+			if self.IsMoreWondersVPActive() == true then
+				if (self.wonder_list[wonder_number] == "FEATURE_NEW_REEF_A") then
+					--print("Great Barrier Reef placed... applying impact values to its southeast tile as well.")
+					for i = 0, DirectionTypes.NUM_DIRECTION_TYPES - 1 do
+						local pBarrierPlot = Map.PlotDirection(x, y, i)
+
+						if pBarrierPlot:GetFeatureType() == GameInfoTypes.FEATURE_NEW_REEF_B or pBarrierPlot:GetFeatureType() == GameInfoTypes.FEATURE_NEW_REEF_C then
+							local iBarrierX = pBarrierPlot:GetX()
+							local iBarrierY = pBarrierPlot:GetY()
+
+							self:PlaceResourceImpact(iBarrierX, iBarrierY, ImpactLayers.LAYER_LUXURY, 0) -- Luxury layer
+							self:PlaceResourceImpact(iBarrierX, iBarrierY, ImpactLayers.LAYER_BONUS, 0) -- Bonus layer
+							self:PlaceResourceImpact(iBarrierX, iBarrierY, ImpactLayers.LAYER_FISH, 0) -- Fish layer
+							self:PlaceResourceImpact(iBarrierX, iBarrierY, ImpactLayers.LAYER_MARBLE, 0) -- Marble layer
+
+							local iBarrierPlotIndex = iBarrierY * iW + iBarrierX + 1
+
+							self.playerCollisionData[iBarrierPlotIndex] = true -- Record exact plot of wonder in the collision list.
+						end
+					end
+				elseif (self.wonder_list[wonder_number] == "FEATURE_SALAR_A") then
+					for i = 0, DirectionTypes.NUM_DIRECTION_TYPES - 1 do
+						local pSalarPlot = Map.PlotDirection(x, y, i)
+
+						if pSalarPlot:GetFeatureType() == GameInfoTypes.FEATURE_SALAR_B then
+							local iSalarX = pSalarPlot:GetX()
+							local iSalarY = pSalarPlot:GetY()
+
+							self:PlaceResourceImpact(iSalarX, iSalarY, ImpactLayers.LAYER_LUXURY, 0) -- Luxury layer
+							self:PlaceResourceImpact(iSalarX, iSalarY, ImpactLayers.LAYER_BONUS, 0) -- Bonus layer
+							self:PlaceResourceImpact(iSalarX, iSalarY, ImpactLayers.LAYER_FISH, 0) -- Fish layer
+							self:PlaceResourceImpact(iSalarX, iSalarY, ImpactLayers.LAYER_MARBLE, 0) -- Marble layer
+
+							local iSalarPlotIndex = iSalarY * iW + iSalarX + 1
+
+							self.playerCollisionData[iSalarPlotIndex] = true -- Record exact plot of wonder in the collision list.
+							break
+						end
+					end
+				elseif (self.wonder_list[wonder_number] == "FEATURE_BERMUDA_A") then
+					local pBermudaPlotSE = Map.PlotDirection(x, y, DirectionTypes.DIRECTION_SOUTHEAST)
+					local pBermudaPlotSW = Map.PlotDirection(x, y, DirectionTypes.DIRECTION_SOUTHWEST)
+
+					local iBermudaX = pBermudaPlotSE:GetX()
+					local iBermudaY = pBermudaPlotSE:GetY()
+
+					self:PlaceResourceImpact(iBermudaX, iBermudaY, ImpactLayers.LAYER_LUXURY, 0) -- Luxury layer
+					self:PlaceResourceImpact(iBermudaX, iBermudaY, ImpactLayers.LAYER_BONUS, 0) -- Bonus layer
+					self:PlaceResourceImpact(iBermudaX, iBermudaY, ImpactLayers.LAYER_FISH, 0) -- Fish layer
+					self:PlaceResourceImpact(iBermudaX, iBermudaY, ImpactLayers.LAYER_MARBLE, 0) -- Marble layer
+
+					local iBermudaPlotIndex = iBermudaY * iW + iBermudaX + 1
+
+					self.playerCollisionData[iBermudaPlotIndex] = true -- Record exact plot of wonder in the collision list.
+
+					local iBermudaX = pBermudaPlotSW:GetX()
+					local iBermudaY = pBermudaPlotSW:GetY()
+
+					self:PlaceResourceImpact(iBermudaX, iBermudaY, ImpactLayers.LAYER_LUXURY, 0) -- Luxury layer
+					self:PlaceResourceImpact(iBermudaX, iBermudaY, ImpactLayers.LAYER_BONUS, 0) -- Bonus layer
+					self:PlaceResourceImpact(iBermudaX, iBermudaY, ImpactLayers.LAYER_FISH, 0) -- Fish layer
+					self:PlaceResourceImpact(iBermudaX, iBermudaY, ImpactLayers.LAYER_MARBLE, 0) -- Marble layer
+
+					local iBermudaPlotIndex = iBermudaY * iW + iBermudaX + 1
+
+					self.playerCollisionData[iBermudaPlotIndex] = true -- Record exact plot of wonder in the collision list.
+				elseif (self.wonder_list[wonder_number] == "FEATURE_CAUSEWAY_A") then
+					for i = 0, DirectionTypes.NUM_DIRECTION_TYPES - 1 do
+						local pCausewayPlot = Map.PlotDirection(x, y, i)
+
+						if pCausewayPlot:GetFeatureType() == GameInfoTypes.FEATURE_CAUSEWAY_B then
+							local iCausewayX = pCausewayPlot:GetX()
+							local iCausewayY = pCausewayPlot:GetY()
+
+							self:PlaceResourceImpact(iCausewayX, iCausewayY, ImpactLayers.LAYER_LUXURY, 0) -- Luxury layer
+							self:PlaceResourceImpact(iCausewayX, iCausewayY, ImpactLayers.LAYER_BONUS, 0) -- Bonus layer
+							self:PlaceResourceImpact(iCausewayX, iCausewayY, ImpactLayers.LAYER_FISH, 0) -- Fish layer
+							self:PlaceResourceImpact(iCausewayX, iCausewayY, ImpactLayers.LAYER_MARBLE, 0) -- Marble layer
+
+							local iCausewayPlotIndex = iCausewayY * iW + iCausewayX + 1
+
+							self.playerCollisionData[iCausewayPlotIndex] = true -- Record exact plot of wonder in the collision list.
+							break
+						end
+					end
+				elseif (self.wonder_list[wonder_number] == "FEATURE_EYE_OF_SAHARA_A") then
+					local pEyeOfSaharaPlotSE = Map.PlotDirection(x, y, DirectionTypes.DIRECTION_SOUTHEAST)
+					local pEyeOfSaharaPlotSW = Map.PlotDirection(x, y, DirectionTypes.DIRECTION_SOUTHWEST)
+
+					local iEyeOfSaharaX = pEyeOfSaharaPlotSE:GetX()
+					local iEyeOfSaharaY = pEyeOfSaharaPlotSE:GetY()
+
+					self:PlaceResourceImpact(iEyeOfSaharaX, iEyeOfSaharaY, ImpactLayers.LAYER_LUXURY, 0) -- Luxury layer
+					self:PlaceResourceImpact(iEyeOfSaharaX, iEyeOfSaharaY, ImpactLayers.LAYER_BONUS, 0) -- Bonus layer
+					self:PlaceResourceImpact(iEyeOfSaharaX, iEyeOfSaharaY, ImpactLayers.LAYER_FISH, 0) -- Fish layer
+					self:PlaceResourceImpact(iEyeOfSaharaX, iEyeOfSaharaY, ImpactLayers.LAYER_MARBLE, 0) -- Marble layer
+
+					local iEyeOfSaharaPlotIndex = iEyeOfSaharaY * iW + iEyeOfSaharaX + 1
+
+					self.playerCollisionData[iEyeOfSaharaPlotIndex] = true -- Record exact plot of wonder in the collision list.
+
+					local iEyeOfSaharaX = pEyeOfSaharaPlotSW:GetX()
+					local iEyeOfSaharaY = pEyeOfSaharaPlotSW:GetY()
+
+					self:PlaceResourceImpact(iEyeOfSaharaX, iEyeOfSaharaY, ImpactLayers.LAYER_LUXURY, 0) -- Luxury layer
+					self:PlaceResourceImpact(iEyeOfSaharaX, iEyeOfSaharaY, ImpactLayers.LAYER_BONUS, 0) -- Bonus layer
+					self:PlaceResourceImpact(iEyeOfSaharaX, iEyeOfSaharaY, ImpactLayers.LAYER_FISH, 0) -- Fish layer
+					self:PlaceResourceImpact(iEyeOfSaharaX, iEyeOfSaharaY, ImpactLayers.LAYER_MARBLE, 0) -- Marble layer
+
+					local iEyeOfSaharaPlotIndex = iEyeOfSaharaY * iW + iEyeOfSaharaX + 1
+
+					self.playerCollisionData[iEyeOfSaharaPlotIndex] = true -- Record exact plot of wonder in the collision list.
+				end
+			else
+				if (self.wonder_list[wonder_number] == "FEATURE_REEF") then
+					--print("Great Barrier Reef placed... applying impact values to its southeast tile as well.")
+					local SEPlot = Map.PlotDirection(x, y, DirectionTypes.DIRECTION_SOUTHEAST)
+					local southeastX = SEPlot:GetX()
+					local southeastY = SEPlot:GetY()
+					self:PlaceStrategicResourceImpact(southeastX, southeastY, 0);
+					self:PlaceResourceImpact(southeastX, southeastY, ImpactLayers.LAYER_LUXURY, 0);
+					self:PlaceResourceImpact(southeastX, southeastY, ImpactLayers.LAYER_BONUS, 0);
+					self:PlaceResourceImpact(southeastX, southeastY, ImpactLayers.LAYER_FISH, 0);
+					self:PlaceResourceImpact(southeastX, southeastY, ImpactLayers.LAYER_MARBLE, 0);
+					local SEplotIndex = southeastY * iW + southeastX + 1
+					self.playerCollisionData[SEplotIndex] = true				-- Record exact plot of wonder in the collision list.
+				end
 			end
 			-- MOD.Barathor: End
 			--
@@ -6708,12 +6850,12 @@ function AssignStartingPlots:PlaceNaturalWonders()
 	-- Determine how many NWs to attempt to place. Target is regulated per map size.
 	-- The final number cannot exceed the number the map has locations to support.
 	local worldsizes = {
-		[GameInfo.Worlds.WORLDSIZE_DUEL.ID] = 2,
-		[GameInfo.Worlds.WORLDSIZE_TINY.ID] = 3,
-		[GameInfo.Worlds.WORLDSIZE_SMALL.ID] = 4,
-		[GameInfo.Worlds.WORLDSIZE_STANDARD.ID] = 5,
-		[GameInfo.Worlds.WORLDSIZE_LARGE.ID] = 6,
-		[GameInfo.Worlds.WORLDSIZE_HUGE.ID] = 7
+		[GameInfo.Worlds.WORLDSIZE_DUEL.ID] = 6, -- adan_eslavo
+		[GameInfo.Worlds.WORLDSIZE_TINY.ID] = 10,
+		[GameInfo.Worlds.WORLDSIZE_SMALL.ID] = 15,
+		[GameInfo.Worlds.WORLDSIZE_STANDARD.ID] = 20,
+		[GameInfo.Worlds.WORLDSIZE_LARGE.ID] = 27,
+		[GameInfo.Worlds.WORLDSIZE_HUGE.ID] = 36
 		}
 	local target_number = worldsizes[Map.GetWorldSize()];
 
@@ -6833,7 +6975,7 @@ function AssignStartingPlots:AssignCityStatesToRegionsOrToUninhabited(args)
 		for current_region = 1, self.iNumCivs do
 			for cs_to_assign_to_this_region = 1, self.iNumCityStatesPerRegion do
 				self.city_state_region_assignments[current_cs_index] = current_region;
-				--print("-"); print("City State", current_cs_index, "assigned to Region#", current_region);
+				print("-"); print("City State", current_cs_index, "assigned to Region#", current_region);
 				current_cs_index = current_cs_index + 1;
 				self.iNumCityStatesUnassigned = self.iNumCityStatesUnassigned - 1;
 			end
@@ -6946,7 +7088,7 @@ function AssignStartingPlots:AssignCityStatesToRegionsOrToUninhabited(args)
 		self.iNumCityStatesUninhabited = math.min(self.iNumCityStatesUnassigned, max_by_ratio, max_by_method);
 		self.iNumCityStatesUnassigned = self.iNumCityStatesUnassigned - self.iNumCityStatesUninhabited;
 	end
-	--print("-"); print("City States assigned to Uninhabited Areas: ", self.iNumCityStatesUninhabited);
+	print("-"); print("City States assigned to Uninhabited Areas: ", self.iNumCityStatesUninhabited);
 	-- Update the city state number.
 	current_cs_index = current_cs_index + self.iNumCityStatesUninhabited;
 
@@ -6966,7 +7108,7 @@ function AssignStartingPlots:AssignCityStatesToRegionsOrToUninhabited(args)
 		else
 			self.iNumCityStatesLowFertility = self.iNumCityStatesUnassigned;
 		end
-		--print("CS Shared Lux: ", self.iNumCityStatesSharedLux, " CS Low Fert: ", self.iNumCityStatesLowFertility);
+		print("CS Shared Lux: ", self.iNumCityStatesSharedLux, " CS Low Fert: ", self.iNumCityStatesLowFertility);
 		-- Assign remaining types to their respective regions.
 		if self.iNumCityStatesSharedLux > 0 then
 			for loop, res_ID in ipairs(shared_lux_IDs) do
@@ -6974,7 +7116,7 @@ function AssignStartingPlots:AssignCityStatesToRegionsOrToUninhabited(args)
 					local this_region_res = region_lux_data[2];
 					if this_region_res == res_ID then
 						self.city_state_region_assignments[current_cs_index] = region_lux_data[1];
-						--print("-"); print("City State", current_cs_index, "assigned to Region#", region_lux_data[1], " to compensate for Shared Luxury ID#", res_ID);
+						print("-"); print("City State", current_cs_index, "assigned to Region#", region_lux_data[1], " to compensate for Shared Luxury ID#", res_ID);
 						current_cs_index = current_cs_index + 1;
 						self.iNumCityStatesUnassigned = self.iNumCityStatesUnassigned - 1;
 					end
@@ -6986,7 +7128,7 @@ function AssignStartingPlots:AssignCityStatesToRegionsOrToUninhabited(args)
 			while self.iNumCityStatesUnassigned >= self.iNumCivs do
 				for current_region = 1, self.iNumCivs do
 					self.city_state_region_assignments[current_cs_index] = current_region;
-					--print("-"); print("City State", current_cs_index, "assigned to Region#", current_region, " to compensate for Low Fertility");
+					print("-"); print("City State", current_cs_index, "assigned to Region#", current_region, " to compensate for Low Fertility");
 					current_cs_index = current_cs_index + 1;
 					self.iNumCityStatesUnassigned = self.iNumCityStatesUnassigned - 1;
 				end
@@ -6997,7 +7139,7 @@ function AssignStartingPlots:AssignCityStatesToRegionsOrToUninhabited(args)
 					local area_plots = self.regionTerrainCounts[region_num][2];
 					local region_fertility = self.regionData[region_num][6];
 					local fertility_per_land_plot = region_fertility / area_plots;
-					--print("-"); print("Region#", region_num, "AreaPlots:", area_plots, "Region Fertility:", region_fertility, "Per Plot:", fertility_per_land_plot);
+					print("-"); print("Region#", region_num, "AreaPlots:", area_plots, "Region Fertility:", region_fertility, "Per Plot:", fertility_per_land_plot);
 
 					table.insert(fert_unsorted, {region_num, fertility_per_land_plot});
 					table.insert(fert_sorted, fertility_per_land_plot);
@@ -7016,7 +7158,7 @@ function AssignStartingPlots:AssignCityStatesToRegionsOrToUninhabited(args)
 				end
 				for loop = 1, self.iNumCityStatesUnassigned do
 					self.city_state_region_assignments[current_cs_index] = region_list[loop];
-					--print("-"); print("City State", current_cs_index, "assigned to Region#", region_list[loop], " to compensate for Low Fertility");
+					print("-"); print("City State", current_cs_index, "assigned to Region#", region_list[loop], " to compensate for Low Fertility");
 					current_cs_index = current_cs_index + 1;
 					self.iNumCityStatesUnassigned = self.iNumCityStatesUnassigned - 1;
 				end
@@ -7044,6 +7186,18 @@ function AssignStartingPlots:CanPlaceCityStateAt(x, y, area_ID, force_it, ignore
 		return false
 	end
 
+	for nearPlot in self:Plot_GetPlotsInCircle(plot, 0, 2) do
+		if nearPlot:GetFeatureType() == FeatureTypes.FEATURE_ICE then
+			return false;
+		end
+	end
+
+	for nearPlot in self:Plot_GetPlotsInCircle(plot, 0, 2) do
+		if nearPlot:GetTerrainType() == TerrainTypes.TERRAIN_SNOW then
+			return false;
+		end
+	end
+
 	-- Must not be on map borders
 	if (not Map:IsWrapX() and (x < 1 or x >= iW - 1)) or (not Map:IsWrapY() and (y < 1 or y >= iH - 1)) then
 		return false
@@ -7060,7 +7214,7 @@ function AssignStartingPlots:CanPlaceCityStateAt(x, y, area_ID, force_it, ignore
 
 	-- Reserve the best city sites for major civs
 	local fertility = self:Plot_GetFertilityInRange(plot, 2)
-	if fertility > 28 then
+	if fertility > 48 then
 		--print("CanPlaceCityStateAt: avoided fertility: ", fertility)
 		return false
 	end
@@ -7293,7 +7447,7 @@ function AssignStartingPlots:PlaceCityStates()
 	for cs_number, region_number in ipairs(self.city_state_region_assignments) do
 		if cs_number <= self.iNumCityStates then -- Make sure it's an active city state before processing.
 			if region_number == -1 and iUninhabitedCandidatePlots > 0 then -- Assigned to areas outside of Regions.
-				--print("Place City States, place in uninhabited called for City State", cs_number);
+				print("Place City States, place in uninhabited called for City State", cs_number);
 				iUninhabitedCandidatePlots = iUninhabitedCandidatePlots - 1;
 				local cs_x, cs_y, success;
 				cs_x, cs_y, success = self:PlaceCityState(self.uninhabited_areas_coastal_plots, self.uninhabited_areas_inland_plots, true, true)
@@ -7477,14 +7631,15 @@ function AssignStartingPlots:NormalizeCityState(x, y)
 						innerTwoFood = innerTwoFood + 1;
 						innerCanHaveBonus = innerCanHaveBonus + 1;
 					elseif featureType == FeatureTypes.FEATURE_FOREST then
+						innerTwoFood = innerTwoFood + 1;
 						innerCanHaveBonus = innerCanHaveBonus + 1;
 					end
 				elseif searchPlot:IsFreshWater() then
 					if terrainType == TerrainTypes.TERRAIN_GRASS then
 						innerFourFood = innerFourFood + 1;
-						if featureType ~= FeatureTypes.FEATURE_MARSH then
+						--if featureType ~= FeatureTypes.FEATURE_MARSH then
 							innerCanHaveBonus = innerCanHaveBonus + 1;
-						end
+						--end
 						if featureType == FeatureTypes.FEATURE_FOREST then
 							innerForest = innerForest + 1;
 						end
@@ -7507,6 +7662,7 @@ function AssignStartingPlots:NormalizeCityState(x, y)
 						end
 					elseif terrainType == TerrainTypes.TERRAIN_DESERT then
 						innerBadTiles = innerBadTiles + 1;
+						innerTwoFood = innerTwoFood + 1;
 						innerCanHaveBonus = innerCanHaveBonus + 1; -- Can have Oasis.
 					else -- Snow
 						innerBadTiles = innerBadTiles + 1;
@@ -7514,9 +7670,9 @@ function AssignStartingPlots:NormalizeCityState(x, y)
 				else -- Dry Flatlands
 					if terrainType == TerrainTypes.TERRAIN_GRASS then
 						innerThreeFood = innerThreeFood + 1;
-						if featureType ~= FeatureTypes.FEATURE_MARSH then
+						--if featureType ~= FeatureTypes.FEATURE_MARSH then
 							innerCanHaveBonus = innerCanHaveBonus + 1;
-						end
+						--end
 						if featureType == FeatureTypes.FEATURE_FOREST then
 							innerForest = innerForest + 1;
 						end
@@ -7590,9 +7746,9 @@ function AssignStartingPlots:NormalizeCityState(x, y)
 				elseif searchPlot:IsFreshWater() then
 					if terrainType == TerrainTypes.TERRAIN_GRASS then
 						outerFourFood = outerFourFood + 1;
-						if featureType ~= FeatureTypes.FEATURE_MARSH then
+						--if featureType ~= FeatureTypes.FEATURE_MARSH then
 							outerCanHaveBonus = outerCanHaveBonus + 1;
-						end
+						--end
 					elseif featureType == FeatureTypes.FEATURE_FLOOD_PLAINS then
 						outerFourFood = outerFourFood + 1;
 						outerCanHaveBonus = outerCanHaveBonus + 1;
@@ -7604,6 +7760,7 @@ function AssignStartingPlots:NormalizeCityState(x, y)
 						outerCanHaveBonus = outerCanHaveBonus + 1;
 					elseif terrainType == TerrainTypes.TERRAIN_DESERT then
 						outerBadTiles = outerBadTiles + 1;
+						outerTwoFood = outerTwoFood + 1;
 						outerCanHaveBonus = outerCanHaveBonus + 1; -- Can have Oasis.
 					else -- Snow
 						outerBadTiles = outerBadTiles + 1;
@@ -7611,9 +7768,9 @@ function AssignStartingPlots:NormalizeCityState(x, y)
 				else -- Dry Flatlands
 					if terrainType == TerrainTypes.TERRAIN_GRASS then
 						outerThreeFood = outerThreeFood + 1;
-						if featureType ~= FeatureTypes.FEATURE_MARSH then
+						--if featureType ~= FeatureTypes.FEATURE_MARSH then
 							outerCanHaveBonus = outerCanHaveBonus + 1;
-						end
+						--end
 					elseif terrainType == TerrainTypes.TERRAIN_PLAINS then
 						outerTwoFood = outerTwoFood + 1;
 						outerCanHaveBonus = outerCanHaveBonus + 1;
@@ -8809,12 +8966,12 @@ end
 function AssignStartingPlots:GetCityStateLuxuriesTargetNumber()
 	-- This data was separated out to allow easy replacement in map scripts.
 	local worldsizes = {
-		[GameInfo.Worlds.WORLDSIZE_DUEL.ID] = 3,
-		[GameInfo.Worlds.WORLDSIZE_TINY.ID] = 3,
-		[GameInfo.Worlds.WORLDSIZE_SMALL.ID] = 3,
-		[GameInfo.Worlds.WORLDSIZE_STANDARD.ID] = 3,
-		[GameInfo.Worlds.WORLDSIZE_LARGE.ID] = 4,
-		[GameInfo.Worlds.WORLDSIZE_HUGE.ID] = 4
+		[GameInfo.Worlds.WORLDSIZE_DUEL.ID] = 5,
+		[GameInfo.Worlds.WORLDSIZE_TINY.ID] = 6,
+		[GameInfo.Worlds.WORLDSIZE_SMALL.ID] = 7,
+		[GameInfo.Worlds.WORLDSIZE_STANDARD.ID] = 8,
+		[GameInfo.Worlds.WORLDSIZE_LARGE.ID] = 10,
+		[GameInfo.Worlds.WORLDSIZE_HUGE.ID] = 12
 		}
 	local CSluxCount = worldsizes[Map.GetWorldSize()];
 	return CSluxCount
@@ -8823,11 +8980,11 @@ end
 function AssignStartingPlots:GetDisabledLuxuriesTargetNumber()
 	-- This data was separated out to allow easy replacement in map scripts.
 	local worldsizes = {
-		[GameInfo.Worlds.WORLDSIZE_DUEL.ID] = 10,
-		[GameInfo.Worlds.WORLDSIZE_TINY.ID] = 7,
-		[GameInfo.Worlds.WORLDSIZE_SMALL.ID] = 5,
-		[GameInfo.Worlds.WORLDSIZE_STANDARD.ID] = 3,
-		[GameInfo.Worlds.WORLDSIZE_LARGE.ID] = 1,
+		[GameInfo.Worlds.WORLDSIZE_DUEL.ID] = 0,
+		[GameInfo.Worlds.WORLDSIZE_TINY.ID] = 0,
+		[GameInfo.Worlds.WORLDSIZE_SMALL.ID] = 0,
+		[GameInfo.Worlds.WORLDSIZE_STANDARD.ID] = 0,
+		[GameInfo.Worlds.WORLDSIZE_LARGE.ID] = 0,
 		[GameInfo.Worlds.WORLDSIZE_HUGE.ID] = 0
 		}
 	local maxToDisable = worldsizes[Map.GetWorldSize()];
@@ -8858,16 +9015,16 @@ function AssignStartingPlots:GetRandomLuxuriesTargetNumber()
 		 This data was separated out to allow easy replacement in map scripts.
 		 With more luxuries available, this ensures that the total luxuries used each game
 		 still match the default game, except for Huge, which really needed a few more anyway! ]]
-	local worldsizes = {
-		[GameInfo.Worlds.WORLDSIZE_DUEL.ID] = 4,
-		[GameInfo.Worlds.WORLDSIZE_TINY.ID] = 5,
-		[GameInfo.Worlds.WORLDSIZE_SMALL.ID] = 5,
-		[GameInfo.Worlds.WORLDSIZE_STANDARD.ID] = 5,
-		[GameInfo.Worlds.WORLDSIZE_LARGE.ID] = 7,
-		[GameInfo.Worlds.WORLDSIZE_HUGE.ID] = 9,
-		}
-	local maxRandoms = worldsizes[Map.GetWorldSize()]
-	return maxRandoms
+		 local worldsizes = {
+			[GameInfo.Worlds.WORLDSIZE_DUEL.ID] = 18,
+			[GameInfo.Worlds.WORLDSIZE_TINY.ID] = 27,
+			[GameInfo.Worlds.WORLDSIZE_SMALL.ID] = 36,
+			[GameInfo.Worlds.WORLDSIZE_STANDARD.ID] = 45,
+			[GameInfo.Worlds.WORLDSIZE_LARGE.ID] = 54,
+			[GameInfo.Worlds.WORLDSIZE_HUGE.ID] = 63
+			}
+		local maxRandoms = worldsizes[Map.GetWorldSize()]
+		return maxRandoms
 end
 ------------------------------------------------------------------------------
 function AssignStartingPlots:AssignLuxuryRoles()
@@ -8891,7 +9048,7 @@ function AssignStartingPlots:AssignLuxuryRoles()
 		self.region_luxury_assignment[region_number] = resource_ID;
 		self.luxury_assignment_count[resource_ID] = self.luxury_assignment_count[resource_ID] + 1; -- Track assignments
 		--
-		--print("-"); print("Region#", region_number, " of type ", self.regionTypes[region_number], " has been assigned Luxury ID#", resource_ID);
+		--[[print("-");]] print("Region#", region_number, " of type ", self.regionTypes[region_number], " has been assigned Luxury ID#", resource_ID);
 		--
 		local already_assigned = TestMembership(self.resourceIDs_assigned_to_regions, resource_ID)
 		if not already_assigned then
@@ -8913,7 +9070,7 @@ function AssignStartingPlots:AssignLuxuryRoles()
 			table.insert(resource_weights, resource_options[2]);
 			iNumAvailableTypes = iNumAvailableTypes + 1;
 		else
-			--print("Luxury ID#", res_ID, "rejected by City States as already belonging to Regions.");
+			print("Luxury ID#", res_ID, "rejected by City States as already belonging to Regions.");
 		end
 	end
 	if iNumAvailableTypes < 3 then
@@ -8943,7 +9100,7 @@ function AssignStartingPlots:AssignLuxuryRoles()
 				table.remove(resource_IDs, index);
 				table.remove(resource_weights, index);
 				--self.iNumTypesUnassigned = self.iNumTypesUnassigned - 1;	-- MOD.Barathor: This is no longer needed.
-				--print("-"); print("City States have been assigned Luxury ID#", use_this_ID);
+				print("-"); print("City States have been assigned Luxury ID#", use_this_ID);
 				break
 			end
 		end
@@ -8977,7 +9134,7 @@ function AssignStartingPlots:AssignLuxuryRoles()
 			table.insert(rand_resource_IDs, res_ID)
 			table.insert(rand_resource_weights, resource_options[2])
 		else
-			--print("Luxury ID#", res_ID, "rejected by Randoms as already belonging to Regions or City States.")
+			print("Luxury ID#", res_ID, "rejected by Randoms as already belonging to Regions or City States.")
 		end
 	end
 
@@ -9002,7 +9159,7 @@ function AssignStartingPlots:AssignLuxuryRoles()
 				table.insert(self.resourceIDs_assigned_to_random, use_this_ID)
 				table.remove(rand_resource_IDs, index)
 				table.remove(rand_resource_weights, index)
-				--print("-") print("Luxury ID#", use_this_ID, "assigned to Random.")
+				--[[print("-")]] print("Luxury ID#", use_this_ID, "assigned to Random.")
 				break
 			end
 		end
@@ -9011,15 +9168,15 @@ function AssignStartingPlots:AssignLuxuryRoles()
 	-- MOD.Barathor: Assign remaining luxuries to Disabled.
 	for index, resource_options in ipairs(self.luxury_fallback_weights) do
 		local res_ID = resource_options[1]
-		--print("-") print("Luxury ID#", res_ID, "checking to disable.")
+		print("-") print("Luxury ID#", res_ID, "checking to disable.")
 		local test1 = TestMembership(self.resourceIDs_assigned_to_regions, res_ID)
 		local test2 = TestMembership(self.resourceIDs_assigned_to_cs, res_ID)
 		local test3 = TestMembership(self.resourceIDs_assigned_to_random, res_ID)
 		if test1 == false and test2 == false and test3 == false then
 			table.insert(self.resourceIDs_not_being_used, res_ID)
-			--print("-") print("Luxury ID#", res_ID, "disabled.")
+			print("-") print("Luxury ID#", res_ID, "disabled.")
 		else
-			--print("Luxury ID#", res_ID, "cannot be disabled and already assigned.")
+			print("Luxury ID#", res_ID, "cannot be disabled and already assigned.")
 		end
 	end
 	-- MOD.Barathor: End
@@ -9519,30 +9676,30 @@ function AssignStartingPlots:GetWorldLuxuryTargetNumbers()
 
 	if self.luxuryDensity == 1 then -- Sparse
 		worldsizes = {
-			[GameInfo.Worlds.WORLDSIZE_DUEL.ID] = {14, 3},
-			[GameInfo.Worlds.WORLDSIZE_TINY.ID] = {24, 4},
-			[GameInfo.Worlds.WORLDSIZE_SMALL.ID] = {36, 4},
-			[GameInfo.Worlds.WORLDSIZE_STANDARD.ID] = {48, 5},
-			[GameInfo.Worlds.WORLDSIZE_LARGE.ID] = {60, 5},
-			[GameInfo.Worlds.WORLDSIZE_HUGE.ID] = {76, 6}
+			[GameInfo.Worlds.WORLDSIZE_DUEL.ID] = {16, 4},
+			[GameInfo.Worlds.WORLDSIZE_TINY.ID] = {32, 4},
+			[GameInfo.Worlds.WORLDSIZE_SMALL.ID] = {48, 5},
+			[GameInfo.Worlds.WORLDSIZE_STANDARD.ID] = {54, 6},
+			[GameInfo.Worlds.WORLDSIZE_LARGE.ID] = {72, 6},
+			[GameInfo.Worlds.WORLDSIZE_HUGE.ID] = {98, 7}
 		}
 	elseif self.luxuryDensity == 3 then -- Abundant
 		worldsizes = {
-			[GameInfo.Worlds.WORLDSIZE_DUEL.ID] = {24, 3},
-			[GameInfo.Worlds.WORLDSIZE_TINY.ID] = {40, 4},
-			[GameInfo.Worlds.WORLDSIZE_SMALL.ID] = {60, 4},
-			[GameInfo.Worlds.WORLDSIZE_STANDARD.ID] = {80, 5},
-			[GameInfo.Worlds.WORLDSIZE_LARGE.ID] = {100, 5},
-			[GameInfo.Worlds.WORLDSIZE_HUGE.ID] = {128, 6}
+			[GameInfo.Worlds.WORLDSIZE_DUEL.ID] = {60, 8},
+			[GameInfo.Worlds.WORLDSIZE_TINY.ID] = {86, 10},
+			[GameInfo.Worlds.WORLDSIZE_SMALL.ID] = {140, 13},
+			[GameInfo.Worlds.WORLDSIZE_STANDARD.ID] = {180, 15},
+			[GameInfo.Worlds.WORLDSIZE_LARGE.ID] = {256, 18},
+			[GameInfo.Worlds.WORLDSIZE_HUGE.ID] = {360, 20}
 		}
 	else -- Standard
 		worldsizes = {
-			[GameInfo.Worlds.WORLDSIZE_DUEL.ID] = {18, 3},
-			[GameInfo.Worlds.WORLDSIZE_TINY.ID] = {30, 4},
-			[GameInfo.Worlds.WORLDSIZE_SMALL.ID] = {45, 4},
-			[GameInfo.Worlds.WORLDSIZE_STANDARD.ID] = {60, 5},
-			[GameInfo.Worlds.WORLDSIZE_LARGE.ID] = {75, 5},
-			[GameInfo.Worlds.WORLDSIZE_HUGE.ID] = {95, 6}
+			[GameInfo.Worlds.WORLDSIZE_DUEL.ID] = {36, 5},
+			[GameInfo.Worlds.WORLDSIZE_TINY.ID] = {60, 6},
+			[GameInfo.Worlds.WORLDSIZE_SMALL.ID] = {92, 8},
+			[GameInfo.Worlds.WORLDSIZE_STANDARD.ID] = {120, 10},
+			[GameInfo.Worlds.WORLDSIZE_LARGE.ID] = {180, 12},
+			[GameInfo.Worlds.WORLDSIZE_HUGE.ID] = {240, 15}
 		}
 	end
 	local world_size_data = worldsizes[Map.GetWorldSize()];
@@ -9716,7 +9873,7 @@ function AssignStartingPlots:PlaceLuxuries()
 			-- If there are no allowable luxury types at this city site, then this city state gets none.
 			local iNumAvailableTypes = table.maxn(lux_possible_for_cs);
 			if iNumAvailableTypes == 0 then
-				--print("City State #", city_state, "has poor land, ineligible to receive a Luxury resource.");
+				print("City State #", city_state, "has poor land, ineligible to receive a Luxury resource.");
 			else
 				-- Calculate probability thresholds for each allowable luxury type.
 				local res_threshold = {};
@@ -9774,7 +9931,7 @@ function AssignStartingPlots:PlaceLuxuries()
 
 	-- Place Regional Luxuries
 	for region_number, res_ID in ipairs(self.region_luxury_assignment) do
-		--print("-"); print("- - -"); print("Attempting to place regional luxury #", res_ID, "in Region#", region_number);
+		print("-"); print("- - -"); print("Attempting to place regional luxury #", res_ID, "in Region#", region_number);
 		local iNumAlreadyPlaced = self.amounts_of_resources_placed[res_ID + 1];
 		local assignment_split = self.luxury_assignment_count[res_ID];
 		local primary, secondary, tertiary, quaternary, quinary, senary, luxury_plot_lists, shuf_list, iNumLeftToPlace;		-- MOD.Barathor: New -- added a quinary and senary list
@@ -9789,11 +9946,11 @@ function AssignStartingPlots:PlaceLuxuries()
 		targetNum = targetNum - self.region_low_fert_compensation[region_number];
 		-- Adjust target number according to Resource Setting.
 		if self.luxuryDensity == 1 then
-			targetNum = targetNum - 2;
-		elseif self.luxuryDensity == 3 then
 			targetNum = targetNum + 2;
+		elseif self.luxuryDensity == 3 then
+			targetNum = targetNum + 5;
 		elseif self.luxuryDensity == 4 then
-			targetNum = targetNum - 2 + Map.Rand(5, "Luxury Resource Density");
+			targetNum = targetNum + 1 + Map.Rand(5, "Luxury Resource Density");
 		end
 		local iNumThisLuxToPlace = math.max(1, targetNum); -- Always place at least one.
 
@@ -9822,7 +9979,7 @@ function AssignStartingPlots:PlaceLuxuries()
 			shuf_list = luxury_plot_lists[senary];
 			iNumLeftToPlace = self:PlaceSpecificNumberOfResources(res_ID, 1, iNumLeftToPlace, 0.25, ImpactLayers.LAYER_LUXURY, 1, 3, shuf_list);	-- MOD.Barathor: Updated -- Existing ratio = 0.5, min radius = 0, max radius = 2
 		end
-		--print("-"); print("-"); print("Number of LuxuryID", res_ID, "left to place in Region#", region_number, "is", iNumLeftToPlace);
+		print("-"); print("-"); print("Number of LuxuryID", res_ID, "left to place in Region#", region_number, "is", iNumLeftToPlace);
 
 		-- MOD.Barathor: New -- New Fallback loop since some luxuries frequently miss the target total during regionl placement (like silk, dyes, spices, etc.)
 					-- This is because some luxuries have only a few indices and don't utilize all four, plus they have strict requirements, like foliage only and on flat land only
@@ -10283,7 +10440,7 @@ function AssignStartingPlots:PlaceSmallQuantitiesOfStrategics(frequency, plot_li
 							res_plot:SetResourceType(selected_ID, selected_quantity);
 							self:PlaceStrategicResourceImpact(x, y, strat_radius);
 							placed_this_res = true;
-							print("Placed resource", selected_ID, "with amount", selected_quantity);
+							--print("Placed resource", selected_ID, "with amount", selected_quantity);
 							self.amounts_of_resources_placed[selected_ID + 1] = self.amounts_of_resources_placed[selected_ID + 1] + selected_quantity;
 						end
 					end
@@ -10546,7 +10703,7 @@ function AssignStartingPlots:AddExtraBonusesToHillsRegions()
 		-- many Bonus get placed, up to a max of double the normal ratio.
 		local infertility_quotient = 1 + math.max(0, hills_ratio - farm_ratio);
 
-		print("Infertility Quotient for Hills Region#", region_number, " is:", infertility_quotient);
+		--print("Infertility Quotient for Hills Region#", region_number, " is:", infertility_quotient);
 
 		--
 		-- Generate plot lists for the extra Bonus placements.
@@ -10612,7 +10769,7 @@ function AssignStartingPlots:AddExtraBonusesToHillsRegions()
 		print("- Tropical Plains:", table.maxn(flat_tropical_plains));
 		print("- Tropical Grass:", table.maxn(flat_tropical_grass));
 		print("- Dry Hills:", table.maxn(dry_hills));
-		]]--
+		--]]
 
 		-- Now that the plot lists are ready, place the Bonuses.
 		if table.maxn(dry_hills) > 0 then
@@ -10657,7 +10814,7 @@ function AssignStartingPlots:AddExtraBonusesToHillsRegions()
 		end
 
 		--
-		print("-"); print("Added extra Bonus resources to Hills Region#", region_number);
+		--print("-"); print("Added extra Bonus resources to Hills Region#", region_number);
 		--
 	end
 end
@@ -10734,14 +10891,35 @@ function AssignStartingPlots:PlaceOilInTheSea()
 	-- WARNING: This operation will render the Oil Impact Table useless for
 	-- further operations, so should always be called last, even after minor placements.
 	local sea_oil_amt_small = 2;
-	local sea_oil_amt_major = 3;
+	local sea_oil_amt_medium = 3;
+	local sea_oil_amt_big = 4;
+	local sea_oil_amt_large = 5;
+	local sea_oil_amt_major = 6;
+	local sea_oil_amt_huge = 9;
+	local sea_oil_amt_gigantic = 11;
+	local sea_oil_amt_randomsmall = 2 + Map.Rand(6, "Place Oil Random Small Amount");
+	local sea_oil_amt_randommajor = 5 + Map.Rand(7, "Place Oil Random Major Amount");
 	local iNumLandOilUnits = self.amounts_of_resources_placed[self.oil_ID + 1];
-	local iNumToPlaceSmall = math.floor((iNumLandOilUnits / 5) / sea_oil_amt_small);
-	local iNumToPlaceMajor = math.floor((iNumLandOilUnits / 5) / sea_oil_amt_major);
+	local iNumToPlaceSmall = math.floor((iNumLandOilUnits / 10) / sea_oil_amt_small);
+	local iNumToPlaceMedium = math.floor((iNumLandOilUnits / 5) / sea_oil_amt_medium);
+	local iNumToPlaceBig = math.floor((iNumLandOilUnits / 5) / sea_oil_amt_big);
+	local iNumToPlaceLarge = math.floor((iNumLandOilUnits / 5) / sea_oil_amt_large);
+	local iNumToPlaceMajor = math.floor((iNumLandOilUnits / 10) / sea_oil_amt_major);
+	local iNumToPlaceHuge = math.floor((iNumLandOilUnits / 10) / sea_oil_amt_huge);
+	local iNumToPlaceGigantic = math.floor((iNumLandOilUnits / 10) / sea_oil_amt_gigantic);
+	local iNumToPlaceRandomSmall = math.floor((iNumLandOilUnits / 5) / sea_oil_amt_randomsmall);
+	local iNumToPlaceRandomMajor = math.floor((iNumLandOilUnits / 5) / sea_oil_amt_randommajor);
 
-	--print("Adding Oil resources to the Sea.");
-	self:PlaceSpecificNumberOfResources(self.oil_ID, sea_oil_amt_small, iNumToPlaceSmall, 0.2, ImpactLayers.LAYER_OIL, 2, 4, self.coast_list);
-	self:PlaceSpecificNumberOfResources(self.oil_ID, sea_oil_amt_major, iNumToPlaceMajor, 0.2, ImpactLayers.LAYER_OIL, 4, 7, self.coast_list);
+	print("Adding Oil resources to the Sea.");
+	self:PlaceSpecificNumberOfResources(self.oil_ID, sea_oil_amt_small, iNumToPlaceSmall, 0.2, ImpactLayers.LAYER_OIL, 2, 3, self.coast_list);
+	self:PlaceSpecificNumberOfResources(self.oil_ID, sea_oil_amt_medium, iNumToPlaceMedium, 0.2, ImpactLayers.LAYER_OIL, 2, 4, self.coast_list);
+	self:PlaceSpecificNumberOfResources(self.oil_ID, sea_oil_amt_big, iNumToPlaceBig, 0.2, ImpactLayers.LAYER_OIL, 2, 5, self.coast_list);
+	self:PlaceSpecificNumberOfResources(self.oil_ID, sea_oil_amt_large, iNumToPlaceLarge, 0.2, ImpactLayers.LAYER_OIL, 3, 5, self.coast_list);
+	self:PlaceSpecificNumberOfResources(self.oil_ID, sea_oil_amt_major, iNumToPlaceMajor, 0.3, ImpactLayers.LAYER_OIL, 3, 6, self.coast_list);
+	self:PlaceSpecificNumberOfResources(self.oil_ID, sea_oil_amt_huge, iNumToPlaceHuge, 0.3, ImpactLayers.LAYER_OIL, 4, 6, self.coast_list);
+	self:PlaceSpecificNumberOfResources(self.oil_ID, sea_oil_amt_gigantic, iNumToPlaceGigantic, 0.3, ImpactLayers.LAYER_OIL, 4, 7, self.coast_list);
+	self:PlaceSpecificNumberOfResources(self.oil_ID, sea_oil_amt_randomsmall, iNumToPlaceRandomSmall, 0.3, ImpactLayers.LAYER_OIL, 2, 4, self.coast_list);
+	self:PlaceSpecificNumberOfResources(self.oil_ID, sea_oil_amt_randommajor, iNumToPlaceRandomMajor, 0.3, ImpactLayers.LAYER_OIL, 4, 7, self.coast_list);
 end
 ------------------------------------------------------------------------------
 function AssignStartingPlots:AdjustTiles()
@@ -10891,6 +11069,7 @@ function AssignStartingPlots:AdjustTiles()
 				if res_ID == self.ivory_ID then
 					-- Always want it flat.  Other types are fine on hills.
 					plot:SetPlotType(PlotTypes.PLOT_LAND, false, true)
+					plot:SetFeatureType(FeatureTypes.NO_FEATURE, -1)
 				end
 
 				-- Don't remove flood plains if present for the few that are placed on it, only remove other features, like marsh or any trees.
@@ -11029,12 +11208,12 @@ end
 function AssignStartingPlots:GetMajorStrategicResourceQuantityValues()
 	-- This function determines quantity per tile for each strategic resource's major deposit size.
 	-- Note: scripts that cannot place Oil in the sea need to increase amounts on land to compensate.
-	local uran_amt, horse_amt, oil_amt, iron_amt, coal_amt, alum_amt = 2, 3, 5, 3, 4, 7;
+	local uran_amt, horse_amt, oil_amt, iron_amt, coal_amt, alum_amt = 2, 3, 6, 4, 6, 7;
 	-- Check the strategic deposit size setting.
 	if self.resSize == 1 then -- Small
 		uran_amt, horse_amt, oil_amt, iron_amt, coal_amt, alum_amt = 2, 2, 3, 2, 2, 3;
 	elseif self.resSize == 3 then -- Large
-		uran_amt, horse_amt, oil_amt, iron_amt, coal_amt, alum_amt = 4, 6, 8, 6, 7, 10;
+		uran_amt, horse_amt, oil_amt, iron_amt, coal_amt, alum_amt = 5, 6, 9, 7, 8, 10;
 	end
 
 	if self:IsReducedSupplyActive() then
@@ -11052,7 +11231,7 @@ function AssignStartingPlots:GetSmallStrategicResourceQuantityValues()
 	if self.resSize == 1 then -- Small
 		uran_amt, horse_amt, oil_amt, iron_amt, coal_amt, alum_amt = 1, 1, 1, 1, 1, 2;
 	elseif self.resSize == 3 then -- Large
-		uran_amt, horse_amt, oil_amt, iron_amt, coal_amt, alum_amt = 2, 2, 2, 2, 2, 3;
+		uran_amt, horse_amt, oil_amt, iron_amt, coal_amt, alum_amt = 2, 2, 2, 3, 3, 3;
 	end
 
 	if self:IsReducedSupplyActive() then
@@ -11077,11 +11256,11 @@ function AssignStartingPlots:PlaceStrategicAndBonusResources()
 	local resources_to_place = {}
 
 	-- Adjust appearance rate per resource density setting chosen by user.
-	local resMultiplier = 1;
+	local resMultiplier = 1.2;
 	if self.resDensity == 1 then -- Sparse, so increase the number of tiles per strategic.
-		resMultiplier = 1.5;
+		resMultiplier = 1.8;
 	elseif self.resDensity == 3 then -- Abundant, so reduce the number of tiles per strategic.
-		resMultiplier = 0.66666667;
+		resMultiplier = 0.95;
 	elseif self.resDensity == 4 then -- Random
 		resMultiplier = self:GetRandomMultiplier(0.5);
 	end
@@ -11091,70 +11270,137 @@ function AssignStartingPlots:PlaceStrategicAndBonusResources()
 
 	-- Revamped by azum4roll: now place most resources one by one for easier balancing
 	resources_to_place = {
-		{self.horse_ID, horse_amt, 100, 1, 2}
+		{self.horse_ID, horse_amt * 1.33, 100, 1, 2}
 	};
 	self:ProcessResourceList(20 * resMultiplier, ImpactLayers.LAYER_HORSE, self.grass_flat_no_feature, resources_to_place);
-	self:ProcessResourceList(32 * resMultiplier, ImpactLayers.LAYER_HORSE, self.plains_flat_no_feature, resources_to_place);
+
+	resources_to_place = {
+		{self.horse_ID, horse_amt, 100, 1, 2}
+	};
+	self:ProcessResourceList(12 * resMultiplier, ImpactLayers.LAYER_HORSE, self.plains_flat_no_feature, resources_to_place);
+	self:ProcessResourceList(16 * resMultiplier, ImpactLayers.LAYER_HORSE, self.flat_open_no_tundra_no_desert, resources_to_place);
 
 	resources_to_place = {
 		{self.horse_ID, horse_amt * 0.7, 100, 2, 3}
 	};
-	self:ProcessResourceList(40 * resMultiplier, ImpactLayers.LAYER_HORSE, self.desert_wheat_list, resources_to_place);
-	self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_HORSE, self.tundra_flat_no_feature, resources_to_place);
+	self:ProcessResourceList(30 * resMultiplier, ImpactLayers.LAYER_HORSE, self.desert_wheat_list, resources_to_place);
+	self:ProcessResourceList(25 * resMultiplier, ImpactLayers.LAYER_HORSE, self.tundra_flat_no_feature, resources_to_place);
+
+	resources_to_place = {
+		{self.iron_ID, iron_amt * 1.33, 100, 1, 3}
+	};
+	self:ProcessResourceList(96 * resMultiplier, ImpactLayers.LAYER_IRON, self.hills_open_list, resources_to_place);
+	self:ProcessResourceList(80 * resMultiplier, ImpactLayers.LAYER_IRON, self.flat_open_no_tundra_no_desert, resources_to_place);
+	self:ProcessResourceList(106 * resMultiplier, ImpactLayers.LAYER_IRON, self.desert_flat_no_feature, resources_to_place);
 
 	resources_to_place = {
 		{self.iron_ID, iron_amt, 100, 1, 3}
 	};
-	self:ProcessResourceList(80 * resMultiplier, ImpactLayers.LAYER_IRON, self.hills_open_list, resources_to_place);
-	self:ProcessResourceList(100 * resMultiplier, ImpactLayers.LAYER_IRON, self.flat_open_no_tundra_no_desert, resources_to_place);
-	self:ProcessResourceList(55 * resMultiplier, ImpactLayers.LAYER_IRON, self.desert_flat_no_feature, resources_to_place);
-	self:ProcessResourceList(50 * resMultiplier, ImpactLayers.LAYER_IRON, self.hills_forest_list, resources_to_place);
-	self:ProcessResourceList(55 * resMultiplier, ImpactLayers.LAYER_IRON, self.forest_flat_that_are_not_tundra, resources_to_place);
-	self:ProcessResourceList(65 * resMultiplier, ImpactLayers.LAYER_IRON, self.tundra_flat_forest, resources_to_place);
-	self:ProcessResourceList(90 * resMultiplier, ImpactLayers.LAYER_IRON, self.tundra_flat_no_feature, resources_to_place);
-	self:ProcessResourceList(17 * resMultiplier, ImpactLayers.LAYER_IRON, self.snow_flat_list, resources_to_place);
+	self:ProcessResourceList(72 * resMultiplier, ImpactLayers.LAYER_IRON, self.hills_forest_list, resources_to_place);
+	self:ProcessResourceList(58 * resMultiplier, ImpactLayers.LAYER_IRON, self.hills_covered_list, resources_to_place);
+	self:ProcessResourceList(59 * resMultiplier, ImpactLayers.LAYER_IRON, self.forest_flat_that_are_not_tundra, resources_to_place);
+
+	resources_to_place = {
+		{self.iron_ID, iron_amt * 0.8, 100, 2, 3}
+	};
+	self:ProcessResourceList(66 * resMultiplier, ImpactLayers.LAYER_IRON, self.tundra_flat_forest, resources_to_place);
+	self:ProcessResourceList(55 * resMultiplier, ImpactLayers.LAYER_IRON, self.tundra_flat_no_feature, resources_to_place);
+	self:ProcessResourceList(64 * resMultiplier, ImpactLayers.LAYER_IRON, self.snow_flat_list, resources_to_place);
+	self:ProcessResourceList(72 * resMultiplier, ImpactLayers.LAYER_IRON, self.hills_snow_list, resources_to_place);
+	self:ProcessResourceList(59 * resMultiplier, ImpactLayers.LAYER_IRON, self.hills_forest_tundra, resources_to_place);
+	self:ProcessResourceList(53 * resMultiplier, ImpactLayers.LAYER_IRON, self.hills_open_tundra, resources_to_place);
+
+	resources_to_place = {
+		{self.coal_ID, coal_amt * 1.33, 100, 1, 2}
+	};
+	self:ProcessResourceList(55 * resMultiplier, ImpactLayers.LAYER_COAL, self.hills_open_no_tundra_no_desert, resources_to_place);
+	self:ProcessResourceList(72 * resMultiplier, ImpactLayers.LAYER_COAL, self.hills_forest_list, resources_to_place);
+	self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_COAL, self.hills_jungle_list, resources_to_place);
+	self:ProcessResourceList(64 * resMultiplier, ImpactLayers.LAYER_COAL, self.hills_open_list, resources_to_place);
 
 	resources_to_place = {
 		{self.coal_ID, coal_amt, 100, 1, 2}
 	};
-	self:ProcessResourceList(40 * resMultiplier, ImpactLayers.LAYER_COAL, self.hills_open_no_tundra_no_desert, resources_to_place);
-	self:ProcessResourceList(70 * resMultiplier, ImpactLayers.LAYER_COAL, self.grass_flat_no_feature, resources_to_place);
-	self:ProcessResourceList(55 * resMultiplier, ImpactLayers.LAYER_COAL, self.plains_flat_no_feature, resources_to_place);
+	self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_COAL, self.grass_flat_no_feature, resources_to_place);
+	self:ProcessResourceList(50 * resMultiplier, ImpactLayers.LAYER_COAL, self.plains_flat_no_feature, resources_to_place);
+
+	resources_to_place = {
+		{self.coal_ID, coal_amt * 0.75, 100, 1, 3}
+	};
+	self:ProcessResourceList(100 * resMultiplier, ImpactLayers.LAYER_COAL, self.tundra_flat_including_forests, resources_to_place);
+	self:ProcessResourceList(75 * resMultiplier, ImpactLayers.LAYER_COAL, self.hills_open_desert, resources_to_place);
+	self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_COAL, self.hills_open_tundra, resources_to_place);
+	self:ProcessResourceList(72 * resMultiplier, ImpactLayers.LAYER_COAL, self.hills_forest_tundra, resources_to_place);
+	self:ProcessResourceList(58 * resMultiplier, ImpactLayers.LAYER_COAL, self.hills_snow_list, resources_to_place);
+
+	resources_to_place = {
+		{self.oil_ID, oil_amt * 1.33, 100, 1, 3}
+	};
+	self:ProcessResourceList(63 * resMultiplier, ImpactLayers.LAYER_OIL, self.desert_flat_no_feature, resources_to_place);
+	self:ProcessResourceList(77 * resMultiplier, ImpactLayers.LAYER_OIL, self.tundra_flat_no_feature, resources_to_place);
 
 	resources_to_place = {
 		{self.oil_ID, oil_amt, 100, 1, 3}
 	};
-	self:ProcessResourceList(35 * resMultiplier, ImpactLayers.LAYER_OIL, self.desert_flat_no_feature, resources_to_place);
-	self:ProcessResourceList(75 * resMultiplier, ImpactLayers.LAYER_OIL, self.tundra_flat_no_feature, resources_to_place);
-	self:ProcessResourceList(25 * resMultiplier, ImpactLayers.LAYER_OIL, self.marsh_list, resources_to_place);
-	self:ProcessResourceList(100 * resMultiplier, ImpactLayers.LAYER_OIL, self.jungle_flat_list, resources_to_place);
-	self:ProcessResourceList(17 * resMultiplier, ImpactLayers.LAYER_OIL, self.snow_flat_list, resources_to_place);
+	self:ProcessResourceList(66 * resMultiplier, ImpactLayers.LAYER_OIL, self.marsh_list, resources_to_place);
+	self:ProcessResourceList(82 * resMultiplier, ImpactLayers.LAYER_OIL, self.jungle_flat_list, resources_to_place);
+	self:ProcessResourceList(43 * resMultiplier, ImpactLayers.LAYER_OIL, self.snow_flat_list, resources_to_place);
+
+	resources_to_place = {
+		{self.aluminum_ID, alum_amt * 1.25, 100, 1, 3}
+	};
+	self:ProcessResourceList(57 * resMultiplier, ImpactLayers.LAYER_ALUMINUM, self.hills_open_no_grass, resources_to_place);
+	self:ProcessResourceList(75 * resMultiplier, ImpactLayers.LAYER_ALUMINUM, self.hills_forest_list, resources_to_place);
+	self:ProcessResourceList(81 * resMultiplier, ImpactLayers.LAYER_ALUMINUM, self.hills_jungle_list, resources_to_place);
+	self:ProcessResourceList(66 * resMultiplier, ImpactLayers.LAYER_ALUMINUM, self.hills_open_list, resources_to_place);
 
 	resources_to_place = {
 		{self.aluminum_ID, alum_amt, 100, 1, 3}
 	};
-	self:ProcessResourceList(38 * resMultiplier, ImpactLayers.LAYER_ALUMINUM, self.hills_open_no_grass, resources_to_place);
-	self:ProcessResourceList(25 * resMultiplier, ImpactLayers.LAYER_ALUMINUM, self.flat_open_no_grass_no_plains, resources_to_place);
-	self:ProcessResourceList(50 * resMultiplier, ImpactLayers.LAYER_ALUMINUM, self.plains_flat_no_feature, resources_to_place);
+	self:ProcessResourceList(69 * resMultiplier, ImpactLayers.LAYER_ALUMINUM, self.flat_open_no_grass_no_plains, resources_to_place);
+	self:ProcessResourceList(78 * resMultiplier, ImpactLayers.LAYER_ALUMINUM, self.plains_flat_no_feature, resources_to_place);
+	self:ProcessResourceList(62 * resMultiplier, ImpactLayers.LAYER_ALUMINUM, self.dry_grass_flat_no_feature, resources_to_place);
 
 	resources_to_place = {
-		{self.uranium_ID, uran_amt, 100, 2, 4}
+		{self.aluminum_ID, alum_amt * 0.75, 100, 2, 4}
+	};
+	self:ProcessResourceList(72 * resMultiplier, ImpactLayers.LAYER_ALUMINUM, self.snow_flat_list, resources_to_place);
+	self:ProcessResourceList(90 * resMultiplier, ImpactLayers.LAYER_ALUMINUM, self.hills_snow_list, resources_to_place);
+	self:ProcessResourceList(80 * resMultiplier, ImpactLayers.LAYER_ALUMINUM, self.hills_open_tundra, resources_to_place);
+	self:ProcessResourceList(66 * resMultiplier, ImpactLayers.LAYER_ALUMINUM, self.hills_open_desert, resources_to_place);
+
+	resources_to_place = {
+		{self.uranium_ID, uran_amt * 0.75, 100, 2, 3}
 	};
 	self:ProcessResourceList(50 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.hills_jungle_list, resources_to_place);
-	self:ProcessResourceList(200 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.hills_open_list, resources_to_place);
+	self:ProcessResourceList(150 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.hills_open_list, resources_to_place);
+
+	resources_to_place = {
+		{self.uranium_ID, uran_amt * 1.33, 100, 1, 2}
+	};
 	self:ProcessResourceList(90 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.tundra_flat_no_feature, resources_to_place);
 	self:ProcessResourceList(150 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.desert_flat_no_feature, resources_to_place);
-	self:ProcessResourceList(300 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.flat_open_no_tundra_no_desert, resources_to_place);
-	self:ProcessResourceList(300 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.hills_forest_list, resources_to_place);
-	self:ProcessResourceList(325 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.forest_flat_that_are_not_tundra, resources_to_place);
-	self:ProcessResourceList(350 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.tundra_flat_forest, resources_to_place);
+	self:ProcessResourceList(80 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.flat_open_no_tundra_no_desert, resources_to_place);
+	self:ProcessResourceList(35 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.dry_grass_flat_no_feature, resources_to_place);
+
+	resources_to_place = {
+		{self.uranium_ID, uran_amt, 100, 2, 3}
+	};
+	self:ProcessResourceList(200 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.hills_forest_list, resources_to_place);
+	self:ProcessResourceList(225 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.forest_flat_that_are_not_tundra, resources_to_place);
+	self:ProcessResourceList(100 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.jungle_flat_list, resources_to_place);
+	self:ProcessResourceList(240 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.tundra_flat_forest, resources_to_place);
+
+	resources_to_place = {
+		{self.uranium_ID, uran_amt * 0.66, 100, 1, 3}
+	};
 	self:ProcessResourceList(37 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.marsh_list, resources_to_place);
-	self:ProcessResourceList(150 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.jungle_flat_list, resources_to_place);
-	self:ProcessResourceList(35 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.snow_flat_list, resources_to_place);
+	self:ProcessResourceList(15 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.snow_flat_list, resources_to_place);
+	self:ProcessResourceList(25 * resMultiplier, ImpactLayers.LAYER_URANIUM, self.hills_snow_list, resources_to_place);
 
 	self:AddModernMinorStrategicsToCityStates();
 
-	self:PlaceSmallQuantitiesOfStrategics(28 * resMultiplier, self.land_hills_list);
+	self:PlaceSmallQuantitiesOfStrategics(16 * resMultiplier, self.land_hills_list);
 
 	self:PlaceOilInTheSea();
 
@@ -11208,11 +11454,11 @@ function AssignStartingPlots:PlaceStrategicAndBonusResources()
 end
 ------------------------------------------------------------------------------
 function AssignStartingPlots:PlaceBonusResources()
-	local resMultiplier = 1;
+	local resMultiplier = 1.2;
 	if self.bonusDensity == 1 then -- Sparse, so increase the number of tiles per bonus.
-		resMultiplier = 1.5;
+		resMultiplier = 1.75;
 	elseif self.bonusDensity == 3 then -- Abundant, so reduce the number of tiles per bonus.
-		resMultiplier = 0.66666667;
+		resMultiplier = 0.75;
 	elseif self.bonusDensity == 4 then -- Random
 		resMultiplier = self:GetRandomMultiplier(0.5);
 	end
@@ -11220,7 +11466,7 @@ function AssignStartingPlots:PlaceBonusResources()
 	-- Place Bonus Resources
 	print("Map Generation - Placing Bonuses");
 	-- ####Communitu_79a has a completely different PlaceFish mechanic, but that's too map dependent
-	self:PlaceFish(10 * resMultiplier, self.coast_list);
+	self:PlaceFish(32 * resMultiplier, self.coast_list);
 	self:PlaceSexyBonusAtCivStarts()
 	self:AddExtraBonusesToHillsRegions()
 
@@ -11229,256 +11475,450 @@ function AssignStartingPlots:PlaceBonusResources()
 	if self:IsEvenMoreResourcesActive() == true then
 		resources_to_place = {
 		{self.deer_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(12 * resMultiplier, ImpactLayers.LAYER_BONUS, self.extra_deer_list, resources_to_place)
-		-- 8
+		self:ProcessResourceList(44 * resMultiplier, ImpactLayers.LAYER_BONUS, self.extra_deer_list, resources_to_place)
 		resources_to_place = {
 		{self.deer_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(16 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tundra_flat_no_feature, resources_to_place)
-		-- 12
+		self:ProcessResourceList(73 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tundra_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.deer_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(56 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tundra_flat_including_forests, resources_to_place)
+		resources_to_place = {
+		{self.deer_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(70 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_forest_list, resources_to_place)
+		resources_to_place = {
+		{self.deer_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(68 * resMultiplier, ImpactLayers.LAYER_BONUS, self.forest_flat_list, resources_to_place)
 
 		resources_to_place = {
 		{self.wheat_ID, 1, 100, 1, 2} };
 		self:ProcessResourceList(20 * resMultiplier, ImpactLayers.LAYER_BONUS, self.desert_wheat_list, resources_to_place)
-		-- 10
+		resources_to_place = {
+		{self.wheat_ID, 1, 100, 0, 2} };
+		self:ProcessResourceList(30 * resMultiplier, ImpactLayers.LAYER_BONUS, self.wheat_list, resources_to_place)
 		resources_to_place = {
 		{self.wheat_ID, 1, 100, 2, 3} };
 		self:ProcessResourceList(44 * resMultiplier, ImpactLayers.LAYER_BONUS, self.plains_flat_no_feature, resources_to_place)
-		-- 27
+		resources_to_place = {
+		{self.wheat_ID, 1, 100, 0, 1} };
+		self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_BONUS, self.fresh_water_plains_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.wheat_ID, 1, 100, 0, 1} };
+		self:ProcessResourceList(26 * resMultiplier, ImpactLayers.LAYER_BONUS, self.dry_plains_flat_no_feature, resources_to_place)
 
 		resources_to_place = {
 		{self.banana_ID, 1, 100, 0, 1} };
 		self:ProcessResourceList(30 * resMultiplier, ImpactLayers.LAYER_BONUS, self.banana_list, resources_to_place)
-		-- 14
-
 		resources_to_place = {
 		{self.banana_ID, 1, 100, 0, 1} };
 		self:ProcessResourceList(40 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tropical_marsh_list, resources_to_place)
-		-- none
+		resources_to_place = {
+		{self.banana_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(42 * resMultiplier, ImpactLayers.LAYER_BONUS, self.jungle_flat_list, resources_to_place)
+		resources_to_place = {
+		{self.banana_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(51 * resMultiplier, ImpactLayers.LAYER_BONUS, self.jungle_flat_list, resources_to_place)
+		resources_to_place = {
+		{self.banana_ID, 1, 100, 1, 1} };
+		self:ProcessResourceList(37 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_jungle_list, resources_to_place)
 
 		resources_to_place = {
-		{self.cow_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(30 * resMultiplier, ImpactLayers.LAYER_BONUS, self.grass_flat_no_feature, resources_to_place)
-		-- 18
+		{self.cow_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(17 * resMultiplier, ImpactLayers.LAYER_BONUS, self.grass_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.cow_ID, 1, 100, 1, 3} };
+		self:ProcessResourceList(24 * resMultiplier, ImpactLayers.LAYER_BONUS, self.plains_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.cow_ID, 1, 100, 1, 1} };
+		self:ProcessResourceList(43 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tropical_marsh_list, resources_to_place)
 
 	-- CBP
 		resources_to_place = {
 		{self.bison_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(24 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flat_open_no_tundra_no_desert, resources_to_place)
+		self:ProcessResourceList(29 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flat_open, resources_to_place)
+		resources_to_place = {
+		{self.bison_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(32 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flat_open_no_grass_no_plains, resources_to_place)
+		resources_to_place = {
+		{self.bison_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(43 * resMultiplier, ImpactLayers.LAYER_BONUS, self.marsh_list, resources_to_place)
+		resources_to_place = {
+		{self.bison_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(38 * resMultiplier, ImpactLayers.LAYER_BONUS, self.snow_flat_list, resources_to_place)
 	-- END
 
 		resources_to_place = {
 		{self.sheep_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(44 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_list, resources_to_place)
-		-- 13
+		self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_list, resources_to_place)
+		resources_to_place = {
+		{self.sheep_ID, 1, 100, 0, 1} };
+		self:ProcessResourceList(58 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_no_tundra, resources_to_place)
+		resources_to_place = {
+		{self.sheep_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(52 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_snow_list, resources_to_place)
+		resources_to_place = {
+		{self.sheep_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(48 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_tundra, resources_to_place)
 
 		resources_to_place = {
 		{self.stone_ID, 1, 100, 1, 1} };
-		self:ProcessResourceList(40 * resMultiplier, ImpactLayers.LAYER_BONUS, self.dry_grass_flat_no_feature, resources_to_place)
-		-- 20
-
+		self:ProcessResourceList(50 * resMultiplier, ImpactLayers.LAYER_BONUS, self.dry_grass_flat_no_feature, resources_to_place)
 		resources_to_place = {
 		{self.stone_ID, 1, 100, 1, 1} };
-		self:ProcessResourceList(40 * resMultiplier, ImpactLayers.LAYER_BONUS, self.dry_plains_flat_no_feature, resources_to_place)
-		-- none
-
+		self:ProcessResourceList(50 * resMultiplier, ImpactLayers.LAYER_BONUS, self.dry_plains_flat_no_feature, resources_to_place)
 		resources_to_place = {
 		{self.stone_ID, 1, 100, 1, 2} };
-		self:ProcessResourceList(30 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tundra_flat_no_feature, resources_to_place)
-		-- 15
-
+		self:ProcessResourceList(69 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tundra_flat_no_feature, resources_to_place)
 		resources_to_place = {
 		{self.stone_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(16 * resMultiplier, ImpactLayers.LAYER_BONUS, self.desert_flat_no_feature, resources_to_place)
-		-- 19
-
+		self:ProcessResourceList(46 * resMultiplier, ImpactLayers.LAYER_BONUS, self.desert_flat_no_feature, resources_to_place)
 		resources_to_place = {
 		{self.stone_ID, 1, 100, 1, 2} };
 		self:ProcessResourceList(36 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_list, resources_to_place)
-		-- none
-
 		resources_to_place = {
 		{self.stone_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(10 * resMultiplier, ImpactLayers.LAYER_BONUS, self.snow_flat_list, resources_to_place)
-		-- none
+		self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_BONUS, self.snow_flat_list, resources_to_place)
 
 		resources_to_place = {
 		{self.deer_ID, 1, 100, 3, 4} };
-		self:ProcessResourceList(50 * resMultiplier, ImpactLayers.LAYER_BONUS, self.forest_flat_that_are_not_tundra, resources_to_place)
-		self:ProcessResourceList(50 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_forest_list, resources_to_place)
-		-- 25
-
-	-- Even More Resources for VP start
-		resources_to_place = {
-		{self.rice_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(24 * resMultiplier, ImpactLayers.LAYER_BONUS, self.fresh_water_grass_flat_no_feature, resources_to_place)
-
-		resources_to_place = {
-		{self.maize_ID, 1, 100, 1, 2} };
-		self:ProcessResourceList(32 * resMultiplier, ImpactLayers.LAYER_BONUS, self.plains_flat_no_feature, resources_to_place)
-
-		resources_to_place = {
-		{self.coconut_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(12 * resMultiplier, ImpactLayers.LAYER_BONUS, self.coconut_list, resources_to_place)
-
-		resources_to_place = {
-		{self.hardwood_ID, 1, 100, 1, 2} };
-		self:ProcessResourceList(37 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_covered_list, resources_to_place)
-
-		resources_to_place = {
-		{self.hardwood_ID, 1, 100, 1, 2} };
-		self:ProcessResourceList(37 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flat_covered, resources_to_place)
-
-		resources_to_place = {
-		{self.hardwood_ID, 1, 100, 1, 2} };
-		self:ProcessResourceList(29 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tundra_flat_forest, resources_to_place)
-
-		resources_to_place = {
-		{self.lead_ID, 1, 100, 1, 3} };
-		self:ProcessResourceList(40 * resMultiplier, ImpactLayers.LAYER_BONUS, self.dry_grass_flat_no_feature, resources_to_place)
-
-		resources_to_place = {
-		{self.lead_ID, 1, 100, 2, 3} };
-		self:ProcessResourceList(35 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_list, resources_to_place)
-
-		resources_to_place = {
-		{self.lead_ID, 1, 100, 1, 2} };
-		self:ProcessResourceList(35 * resMultiplier, ImpactLayers.LAYER_BONUS, self.desert_flat_no_feature, resources_to_place)
-
-		resources_to_place = {
-		{self.pineapple_ID, 1, 100, 0, 3} };
-		self:ProcessResourceList(29 * resMultiplier, ImpactLayers.LAYER_BONUS, self.banana_list, resources_to_place)
-
-		resources_to_place = {
-		{self.potato_ID, 1, 100, 2, 3} };
-		self:ProcessResourceList(40 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flat_open_no_tundra_no_desert, resources_to_place)
-
-		resources_to_place = {
-		{self.potato_ID, 1, 100, 0, 3} };
-		self:ProcessResourceList(29 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_no_tundra_no_desert, resources_to_place)
-
-		resources_to_place = {
-		{self.rubber_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(43 * resMultiplier, ImpactLayers.LAYER_BONUS, self.banana_list, resources_to_place)
-
-		resources_to_place = {
-		{self.sulfur_ID, 1, 100, 1, 3} };
-		self:ProcessResourceList(29 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_list, resources_to_place)
-
-		resources_to_place = {
-		{self.sulfur_ID, 1, 100, 1, 3} };
-		self:ProcessResourceList(37 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_covered_list, resources_to_place)
-
-		resources_to_place = {
-		{self.sulfur_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(21 * resMultiplier, ImpactLayers.LAYER_BONUS, self.snow_flat_list, resources_to_place)
-
-		resources_to_place = {
-		{self.sulfur_ID, 1, 100, 1, 3} };
-		self:ProcessResourceList(43 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flat_open, resources_to_place)
-
-		resources_to_place = {
-		{self.titanium_ID, 1, 100,0, 2} };
-		self:ProcessResourceList(56 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flat_open, resources_to_place)
-
-		resources_to_place = {
-		{self.titanium_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(51 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_list, resources_to_place)
-
-		resources_to_place = {
-		{self.titanium_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(48 * resMultiplier, ImpactLayers.LAYER_BONUS, self.desert_flat_no_feature, resources_to_place)
-
-		resources_to_place = {
-		{self.titanium_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(40 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tundra_flat_including_forests, resources_to_place)
-
-		resources_to_place = {
-		{self.titanium_ID, 1, 100, 0, 1} };
-		self:ProcessResourceList(24 * resMultiplier, ImpactLayers.LAYER_BONUS, self.snow_flat_list, resources_to_place)
-	-- Even More Resources for VP end
-	else
-		resources_to_place = {
-		{self.deer_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(6 * resMultiplier, ImpactLayers.LAYER_BONUS, self.extra_deer_list, resources_to_place)
-		-- 8
-		resources_to_place = {
-		{self.deer_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(8 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tundra_flat_no_feature, resources_to_place)
-		-- 12
-
-		resources_to_place = {
-		{self.wheat_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(20 * resMultiplier, ImpactLayers.LAYER_BONUS, self.wheat_list, resources_to_place)
+		self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_BONUS, self.forest_flat_that_are_not_tundra, resources_to_place)
+		self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_forest_list, resources_to_place)
 
 		resources_to_place = {
 		{self.rice_ID, 1, 100, 0, 1} };
 		self:ProcessResourceList(12 * resMultiplier, ImpactLayers.LAYER_BONUS, self.rice_list, resources_to_place)
+		resources_to_place = {
+		{self.rice_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(15 * resMultiplier, ImpactLayers.LAYER_BONUS, self.fresh_water_grass_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.rice_ID, 1, 100, 0, 2} };
+		self:ProcessResourceList(32 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flood_plains_list, resources_to_place)
+		resources_to_place = {
+		{self.rice_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(26 * resMultiplier, ImpactLayers.LAYER_BONUS, self.marsh_list, resources_to_place)
+		resources_to_place = {
+		{self.rice_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(22 * resMultiplier, ImpactLayers.LAYER_BONUS, self.dry_grass_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.rice_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(45 * resMultiplier, ImpactLayers.LAYER_BONUS, self.grass_flat_no_feature, resources_to_place)
 
 		resources_to_place = {
 		{self.maize_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(24 * resMultiplier, ImpactLayers.LAYER_BONUS, self.maize_list, resources_to_place)
+		self:ProcessResourceList(14 * resMultiplier, ImpactLayers.LAYER_BONUS, self.maize_list, resources_to_place)
+		resources_to_place = {
+		{self.maize_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(24 * resMultiplier, ImpactLayers.LAYER_BONUS, self.plains_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.maize_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(21 * resMultiplier, ImpactLayers.LAYER_BONUS, self.fresh_water_plains_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.maize_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(48 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flood_plains_list, resources_to_place)
+		resources_to_place = {
+		{self.maize_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(27 * resMultiplier, ImpactLayers.LAYER_BONUS, self.dry_plains_flat_no_feature, resources_to_place)
+
+	-- Even More Resources for VP start
+		resources_to_place = {
+		{self.coconut_ID, 1, 100, 1, 3} };
+		self:ProcessResourceList(20 * resMultiplier, ImpactLayers.LAYER_BONUS, self.coconut_list, resources_to_place)
+		resources_to_place = {
+		{self.coconut_ID, 1, 100, 0, 1} };
+		self:ProcessResourceList(26 * resMultiplier, ImpactLayers.LAYER_BONUS, self.marsh_list, resources_to_place)
+		resources_to_place = {
+		{self.coconut_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(23 * resMultiplier, ImpactLayers.LAYER_BONUS, self.jungle_flat_list, resources_to_place)
+		resources_to_place = {
+		{self.coconut_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(25 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_jungle_list, resources_to_place)
+
+		resources_to_place = {
+		{self.hardwood_ID, 1, 100, 0, 3} };
+		self:ProcessResourceList(37 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_covered_list, resources_to_place)
+		resources_to_place = {
+		{self.hardwood_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(35 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flat_covered, resources_to_place)
+		resources_to_place = {
+		{self.hardwood_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(52 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tundra_flat_forest, resources_to_place)
+		resources_to_place = {
+		{self.hardwood_ID, 1, 100, 1, 3} };
+		self:ProcessResourceList(32 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_forest_list, resources_to_place)
+		resources_to_place = {
+		{self.hardwood_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_jungle_list, resources_to_place)
+
+		resources_to_place = {
+		{self.lead_ID, 1, 100, 1, 3} };
+		self:ProcessResourceList(53 * resMultiplier, ImpactLayers.LAYER_BONUS, self.dry_grass_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.lead_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(45 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_list, resources_to_place)
+		resources_to_place = {
+		{self.lead_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(46 * resMultiplier, ImpactLayers.LAYER_BONUS, self.desert_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.lead_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(34 * resMultiplier, ImpactLayers.LAYER_BONUS, self.snow_flat_list, resources_to_place)
+		resources_to_place = {
+		{self.lead_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(56 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tundra_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.lead_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(74 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_snow_list, resources_to_place)
+		resources_to_place = {
+		{self.lead_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(55 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_tundra, resources_to_place)
+
+		resources_to_place = {
+		{self.pineapple_ID, 1, 100, 0, 3} };
+		self:ProcessResourceList(28 * resMultiplier, ImpactLayers.LAYER_BONUS, self.banana_list, resources_to_place)
+		resources_to_place = {
+		{self.pineapple_ID, 1, 100, 0, 1} };
+		self:ProcessResourceList(53 * resMultiplier, ImpactLayers.LAYER_BONUS, self.marsh_list, resources_to_place)
+		resources_to_place = {
+		{self.pineapple_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(46 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_covered_no_tundra, resources_to_place)
+		resources_to_place = {
+		{self.pineapple_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(40 * resMultiplier, ImpactLayers.LAYER_BONUS, self.jungle_flat_list, resources_to_place)
+		resources_to_place = {
+		{self.pineapple_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(37 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_jungle_list, resources_to_place)
+		resources_to_place = {
+		{self.pineapple_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(73 * resMultiplier, ImpactLayers.LAYER_BONUS, self.forest_flat_that_are_not_tundra, resources_to_place)
+		resources_to_place = {
+		{self.pineapple_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(86 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flat_covered_no_tundra, resources_to_place)
+
+		resources_to_place = {
+		{self.potato_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(26 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flat_open_no_tundra_no_desert, resources_to_place)
+		resources_to_place = {
+		{self.potato_ID, 1, 100, 0, 3} };
+		self:ProcessResourceList(55 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_no_tundra_no_desert, resources_to_place)
+		resources_to_place = {
+		{self.potato_ID, 1, 100, 1, 3} };
+		self:ProcessResourceList(36 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tundra_flat_including_forests, resources_to_place)
+		resources_to_place = {
+		{self.potato_ID, 1, 100, 1, 3} };
+		self:ProcessResourceList(42 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_tundra, resources_to_place)
+		resources_to_place = {
+		{self.potato_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(28 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tundra_flat_no_feature, resources_to_place)
+
+		resources_to_place = {
+		{self.rubber_ID, 1, 100, 0, 2} };
+		self:ProcessResourceList(70 * resMultiplier, ImpactLayers.LAYER_BONUS, self.banana_list, resources_to_place)
+		resources_to_place = {
+		{self.rubber_ID, 1, 100, 0, 1} };
+		self:ProcessResourceList(80 * resMultiplier, ImpactLayers.LAYER_BONUS, self.marsh_list, resources_to_place)
+		resources_to_place = {
+		{self.rubber_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(47 * resMultiplier, ImpactLayers.LAYER_BONUS, self.jungle_flat_list, resources_to_place)
+		resources_to_place = {
+		{self.rubber_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(58 * resMultiplier, ImpactLayers.LAYER_BONUS, self.forest_flat_list, resources_to_place)
+		resources_to_place = {
+		{self.rubber_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_covered_list, resources_to_place)
+		resources_to_place = {
+		{self.rubber_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(51 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flat_covered, resources_to_place)
+		resources_to_place = {
+		{self.rubber_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(42 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_jungle_list, resources_to_place)
+		resources_to_place = {
+		{self.rubber_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(45 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_forest_list, resources_to_place)
+
+		resources_to_place = {
+		{self.sulfur_ID, 1, 100, 1, 3} };
+		self:ProcessResourceList(67 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_list, resources_to_place)
+		resources_to_place = {
+		{self.sulfur_ID, 1, 100, 1, 3} };
+		self:ProcessResourceList(59 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_covered_list, resources_to_place)
+		resources_to_place = {
+		{self.sulfur_ID, 1, 100, 0, 2} };
+		self:ProcessResourceList(43 * resMultiplier, ImpactLayers.LAYER_BONUS, self.snow_flat_list, resources_to_place)
+		resources_to_place = {
+		{self.sulfur_ID, 1, 100, 1, 3} };
+		self:ProcessResourceList(36 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flat_open, resources_to_place)
+		resources_to_place = {
+		{self.sulfur_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(37 * resMultiplier, ImpactLayers.LAYER_BONUS, self.desert_or_tundra_flat_no_feature, resources_to_place)
+
+		resources_to_place = {
+		{self.titanium_ID, 1, 100,0, 2} };
+		self:ProcessResourceList(43 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flat_open, resources_to_place)
+		resources_to_place = {
+		{self.titanium_ID, 1, 100, 0, 2} };
+		self:ProcessResourceList(45 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_list, resources_to_place)
+		resources_to_place = {
+		{self.titanium_ID, 1, 100, 0, 2} };
+		self:ProcessResourceList(37 * resMultiplier, ImpactLayers.LAYER_BONUS, self.desert_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.titanium_ID, 1, 100, 0, 2} };
+		self:ProcessResourceList(59 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tundra_flat_including_forests, resources_to_place)
+		resources_to_place = {
+		{self.titanium_ID, 1, 100, 0, 1} };
+		self:ProcessResourceList(69 * resMultiplier, ImpactLayers.LAYER_BONUS, self.snow_flat_list, resources_to_place)
+		resources_to_place = {
+		{self.titanium_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(77 * resMultiplier, ImpactLayers.LAYER_BONUS, self.marsh_list, resources_to_place)
+		resources_to_place = {
+		{self.titanium_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(38 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_snow_list, resources_to_place)
+		resources_to_place = {
+		{self.titanium_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(89 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_desert, resources_to_place)
+	-- Even More Resources for VP end
+	else
+		resources_to_place = {
+		{self.deer_ID, 1, 100, 0, 2} };
+		self:ProcessResourceList(44 * resMultiplier, ImpactLayers.LAYER_BONUS, self.extra_deer_list, resources_to_place)
+		resources_to_place = {
+		{self.deer_ID, 1, 100, 0, 2} };
+		self:ProcessResourceList(73 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tundra_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.deer_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(56 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tundra_flat_including_forests, resources_to_place)
+		resources_to_place = {
+		{self.deer_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(70 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_forest_list, resources_to_place)
+		resources_to_place = {
+		{self.deer_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(68 * resMultiplier, ImpactLayers.LAYER_BONUS, self.forest_flat_list, resources_to_place)
+
+		resources_to_place = {
+		{self.wheat_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(20 * resMultiplier, ImpactLayers.LAYER_BONUS, self.desert_wheat_list, resources_to_place)
+		resources_to_place = {
+		{self.wheat_ID, 1, 100, 0, 2} };
+		self:ProcessResourceList(30 * resMultiplier, ImpactLayers.LAYER_BONUS, self.wheat_list, resources_to_place)
+		resources_to_place = {
+		{self.wheat_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(44 * resMultiplier, ImpactLayers.LAYER_BONUS, self.plains_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.wheat_ID, 1, 100, 0, 1} };
+		self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_BONUS, self.fresh_water_plains_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.wheat_ID, 1, 100, 0, 1} };
+		self:ProcessResourceList(26 * resMultiplier, ImpactLayers.LAYER_BONUS, self.dry_plains_flat_no_feature, resources_to_place)
 
 		resources_to_place = {
 		{self.banana_ID, 1, 100, 0, 1} };
-		self:ProcessResourceList(15 * resMultiplier, ImpactLayers.LAYER_BONUS, self.banana_list, resources_to_place)
-		-- 14
-
+		self:ProcessResourceList(30 * resMultiplier, ImpactLayers.LAYER_BONUS, self.banana_list, resources_to_place)
 		resources_to_place = {
 		{self.banana_ID, 1, 100, 0, 1} };
-		self:ProcessResourceList(20 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tropical_marsh_list, resources_to_place)
-		-- none
+		self:ProcessResourceList(40 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tropical_marsh_list, resources_to_place)
+		resources_to_place = {
+		{self.banana_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(42 * resMultiplier, ImpactLayers.LAYER_BONUS, self.jungle_flat_list, resources_to_place)
+		resources_to_place = {
+		{self.banana_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(51 * resMultiplier, ImpactLayers.LAYER_BONUS, self.jungle_flat_list, resources_to_place)
+		resources_to_place = {
+		{self.banana_ID, 1, 100, 1, 1} };
+		self:ProcessResourceList(37 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_jungle_list, resources_to_place)
 
 		resources_to_place = {
-		{self.cow_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(15 * resMultiplier, ImpactLayers.LAYER_BONUS, self.grass_flat_no_feature, resources_to_place)
-		-- 18
+		{self.cow_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(17 * resMultiplier, ImpactLayers.LAYER_BONUS, self.grass_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.cow_ID, 1, 100, 1, 3} };
+		self:ProcessResourceList(24 * resMultiplier, ImpactLayers.LAYER_BONUS, self.plains_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.cow_ID, 1, 100, 1, 1} };
+		self:ProcessResourceList(43 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tropical_marsh_list, resources_to_place)
 
 	-- CBP
 		resources_to_place = {
 		{self.bison_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(26 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flat_open_no_tundra_no_desert, resources_to_place)
+		self:ProcessResourceList(29 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flat_open, resources_to_place)
+		resources_to_place = {
+		{self.bison_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(32 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flat_open_no_grass_no_plains, resources_to_place)
+		resources_to_place = {
+		{self.bison_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(43 * resMultiplier, ImpactLayers.LAYER_BONUS, self.marsh_list, resources_to_place)
+		resources_to_place = {
+		{self.bison_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(38 * resMultiplier, ImpactLayers.LAYER_BONUS, self.snow_flat_list, resources_to_place)
 	-- END
 
 		resources_to_place = {
 		{self.sheep_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(18 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_list, resources_to_place)
-		-- 13
-
-		resources_to_place = {
-		{self.stone_ID, 1, 100, 1, 1} };
-		self:ProcessResourceList(30 * resMultiplier, ImpactLayers.LAYER_BONUS, self.dry_grass_flat_no_feature, resources_to_place)
-		-- 20
-
-		resources_to_place = {
-		{self.stone_ID, 1, 100, 1, 1} };
-		self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_BONUS, self.dry_plains_flat_no_feature, resources_to_place)
-		-- none
-
-		resources_to_place = {
-		{self.stone_ID, 1, 100, 1, 2} };
-		self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tundra_flat_no_feature, resources_to_place)
-		-- 15
-
-		resources_to_place = {
-		{self.stone_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(13 * resMultiplier, ImpactLayers.LAYER_BONUS, self.desert_flat_no_feature, resources_to_place)
-		-- 19
-
-		resources_to_place = {
-		{self.stone_ID, 1, 100, 1, 2} };
 		self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_list, resources_to_place)
-		-- none
+		resources_to_place = {
+		{self.sheep_ID, 1, 100, 0, 1} };
+		self:ProcessResourceList(58 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_no_tundra, resources_to_place)
+		resources_to_place = {
+		{self.sheep_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(52 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_snow_list, resources_to_place)
+		resources_to_place = {
+		{self.sheep_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(48 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_tundra, resources_to_place)
 
 		resources_to_place = {
+		{self.stone_ID, 1, 100, 1, 1} };
+		self:ProcessResourceList(50 * resMultiplier, ImpactLayers.LAYER_BONUS, self.dry_grass_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.stone_ID, 1, 100, 1, 1} };
+		self:ProcessResourceList(50 * resMultiplier, ImpactLayers.LAYER_BONUS, self.dry_plains_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.stone_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(69 * resMultiplier, ImpactLayers.LAYER_BONUS, self.tundra_flat_no_feature, resources_to_place)
+		resources_to_place = {
 		{self.stone_ID, 1, 100, 0, 2} };
-		self:ProcessResourceList(8 * resMultiplier, ImpactLayers.LAYER_BONUS, self.snow_flat_list, resources_to_place)
-		-- none
+		self:ProcessResourceList(46 * resMultiplier, ImpactLayers.LAYER_BONUS, self.desert_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.stone_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(36 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_open_list, resources_to_place)
+		resources_to_place = {
+		{self.stone_ID, 1, 100, 0, 2} };
+		self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_BONUS, self.snow_flat_list, resources_to_place)
 
 		resources_to_place = {
 		{self.deer_ID, 1, 100, 3, 4} };
-		self:ProcessResourceList(25 * resMultiplier, ImpactLayers.LAYER_BONUS, self.forest_flat_that_are_not_tundra, resources_to_place)
-		self:ProcessResourceList(25 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_forest_list, resources_to_place)
-		-- 25
+		self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_BONUS, self.forest_flat_that_are_not_tundra, resources_to_place)
+		self:ProcessResourceList(60 * resMultiplier, ImpactLayers.LAYER_BONUS, self.hills_forest_list, resources_to_place)
+
+		resources_to_place = {
+		{self.rice_ID, 1, 100, 0, 1} };
+		self:ProcessResourceList(12 * resMultiplier, ImpactLayers.LAYER_BONUS, self.rice_list, resources_to_place)
+		resources_to_place = {
+		{self.rice_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(15 * resMultiplier, ImpactLayers.LAYER_BONUS, self.fresh_water_grass_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.rice_ID, 1, 100, 0, 2} };
+		self:ProcessResourceList(32 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flood_plains_list, resources_to_place)
+		resources_to_place = {
+		{self.rice_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(26 * resMultiplier, ImpactLayers.LAYER_BONUS, self.marsh_list, resources_to_place)
+		resources_to_place = {
+		{self.rice_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(22 * resMultiplier, ImpactLayers.LAYER_BONUS, self.dry_grass_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.rice_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(45 * resMultiplier, ImpactLayers.LAYER_BONUS, self.grass_flat_no_feature, resources_to_place)
+
+		resources_to_place = {
+		{self.maize_ID, 1, 100, 0, 2} };
+		self:ProcessResourceList(14 * resMultiplier, ImpactLayers.LAYER_BONUS, self.maize_list, resources_to_place)
+		resources_to_place = {
+		{self.maize_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(24 * resMultiplier, ImpactLayers.LAYER_BONUS, self.plains_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.maize_ID, 1, 100, 1, 2} };
+		self:ProcessResourceList(21 * resMultiplier, ImpactLayers.LAYER_BONUS, self.fresh_water_plains_flat_no_feature, resources_to_place)
+		resources_to_place = {
+		{self.maize_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(48 * resMultiplier, ImpactLayers.LAYER_BONUS, self.flood_plains_list, resources_to_place)
+		resources_to_place = {
+		{self.maize_ID, 1, 100, 2, 3} };
+		self:ProcessResourceList(27 * resMultiplier, ImpactLayers.LAYER_BONUS, self.dry_plains_flat_no_feature, resources_to_place)
 	end
 end
 ------------------------------------------------------------------------------
@@ -11576,6 +12016,31 @@ function AssignStartingPlots:IsReducedSupplyActive()
 	end
 
 	return isUsingReducedSupply
+end
+--------------------------------------------------------------------------------
+-- Check if More Wonders for Vox Populi is activated
+function AssignStartingPlots:IsMoreWondersVPActive()
+	local communityPatchModID = "d1b6328c-ff44-4b0d-aad7-c657f83610cd"
+	local MoreWondersVPID = "3e151552-1683-4881-b736-8ee89226f599"
+	local isUsingCommunityPatch = false
+	local isUsingMoreWondersVP = false
+
+	for _, mod in pairs(Modding.GetActivatedMods()) do
+		if (mod.ID == communityPatchModID) then -- if Community Patch is not activated, then we are running in modpack mode
+			isUsingCommunityPatch = true
+		elseif (mod.ID == MoreWondersVPID) then
+			isUsingMoreWondersVP = true
+			break
+		end
+	end
+
+	if isUsingCommunityPatch == false then -- fallback method for modpack mode
+		for row in DB.Query("SELECT * FROM Features WHERE Type = 'FEATURE_SALAR_A'") do
+			isUsingMoreWondersVP = true
+		end
+	end
+
+	return isUsingMoreWondersVP
 end
 ----------------------------------------------------------------
 function AssignStartingPlots:Plot_GetPlotsInCircle(plot, minR, maxR)
