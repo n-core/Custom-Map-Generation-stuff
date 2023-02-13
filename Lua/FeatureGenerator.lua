@@ -90,7 +90,7 @@ function FeatureGenerator.Create(args)
 	--]]
 	local arcticRiver		= true;
 	local arcticRiverRandom	= true;
-	local tundraRiverChance	= 50;	--	Set only between 1-100
+	local tundraRiverChance	= 40;	--	Set only between 1-100
 	local snowRiverChance	= 60;	--	Set only between 1-100
 	--
 	local floodDesert		= true;
@@ -100,23 +100,26 @@ function FeatureGenerator.Create(args)
 	if you enabled the game option. (Enabled by default)
 	--]]
 	if (not Game.IsOption(GameOptionTypes.GAMEOPTION_JUNGLE_PLAINS)) then
-		print("- Game option Jungle on Plains is disabled");
 		jungleBool			= false;
+		print("- Game option Jungle on Plains is disabled");
 	else
+		jungleBool			= true;
 		print("- Game option Jungle on Plains is enabled");
 	end
 
 	if (not Game.IsOption(GameOptionTypes.GAMEOPTION_ARCTIC_RIVER)) then
-		print("- Game option Warm Arctic River is disabled");
 		arcticRiver			= false;
+		print("- Game option Warm Arctic River is disabled");
 	else
+		arcticRiver			= true;
 		print("- Game option Warm Arctic River is enabled");
 	end
 
 	if (not Game.IsOption(GameOptionTypes.GAMEOPTION_FLOOD_DESERT)) then
-		print("- Game option Desert Flood Plains is disabled");
 		floodDesert			= false;
+		print("- Game option Desert Flood Plains is disabled");
 	else
+		floodDesert			= true;
 		print("- Game option Desert Flood Plains is enabled");
 	end
 

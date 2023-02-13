@@ -1128,7 +1128,7 @@ function AssignStartingPlots:MeasureStartPlacementFertilityOfPlot(x, y, checkFor
 	local featureType = plot:GetFeatureType();
 	-- Measure Fertility -- Any cases absent from the process have a 0 value.
 	if plotType == PlotTypes.PLOT_MOUNTAIN then -- Note, mountains cannot belong to a landmass AreaID, so they usually go unmeasured.
-		plotFertility = -1;
+		plotFertility = -2;
 	elseif terrainType == TerrainTypes.TERRAIN_SNOW then
 		plotFertility = -1;
 	elseif featureType == FeatureTypes.FEATURE_OASIS then
@@ -1153,17 +1153,17 @@ function AssignStartingPlots:MeasureStartPlacementFertilityOfPlot(x, y, checkFor
 		if featureType == FeatureTypes.FEATURE_FOREST then
 			plotFertility = plotFertility + 0; -- Removing forest bonus as a balance tweak. -1/26/2011 BT
 		elseif featureType == FeatureTypes.FEATURE_JUNGLE then
-			plotFertility = plotFertility + 0;
+			plotFertility = plotFertility - 1;
 		elseif featureType == FeatureTypes.FEATURE_MARSH then
-			plotFertility = plotFertility + 1; -- Increasing penalty for Marsh plots. -1/26/2011 BT
+			plotFertility = plotFertility - 2; -- Increasing penalty for Marsh plots. -1/26/2011 BT
 		elseif featureType == FeatureTypes.FEATURE_ICE then
 			plotFertility = plotFertility - 1;
 		end
 		if plot:IsRiverSide() then
-			plotFertility = plotFertility + 2;
+			plotFertility = plotFertility + 1;
 		end
 		if plot:IsFreshWater() then
-			plotFertility = plotFertility + 2;
+			plotFertility = plotFertility + 1;
 		end
 		if checkForCoastalLand == true then -- When measuring only one AreaID, this shortcut helps account for coastal plots not measured.
 			if plot:IsCoastalLand() then
@@ -2225,8 +2225,8 @@ function AssignStartingPlots:DetermineRegionTypes()
 		local jungle_percent = 0.20
 		local forest_percent = 0.25
 		local hills_percent  = 0.30
-		local plains_percent = 0.40
-		local grass_percent  = 0.40
+		local plains_percent = 0.35
+		local grass_percent  = 0.35
 
 		-- MOD.Barathor: This variable will decrement until a region is assigned; starts off very high.
 		local adjustment     = 0.50
@@ -2612,11 +2612,10 @@ function AssignStartingPlots:MeasureSinglePlot(x, y, region_type)
 	end
 
 	if featureType == FeatureTypes.FEATURE_JUNGLE then -- Jungles are Food, Good, except in Grass regions.
-		--if region_type ~= RegionTypes.REGION_GRASSLAND then
+		if region_type ~= RegionTypes.REGION_GRASSLAND then
 			data[1] = true;
 			data[3] = true;
-		--elseif plotType == PlotTypes.PLOT_HILLS then -- Jungle hill, in grass region, count as Prod but not Good.
-		if plotType == PlotTypes.PLOT_HILLS then -- Jungle hill, in grass region, count as Prod but not Good.
+		elseif plotType == PlotTypes.PLOT_HILLS then -- Jungle hill, in grass region, count as Prod but not Good.
 			data[2] = true;
 		end
 		return data
@@ -2639,7 +2638,6 @@ function AssignStartingPlots:MeasureSinglePlot(x, y, region_type)
 		return data
 	elseif featureType == FeatureTypes.FEATURE_MARSH then -- Marsh are ignored.
 		data[1] = true;
-		data[3] = true;
 		return data
 	end
 
@@ -5841,7 +5839,7 @@ function AssignStartingPlots:ExaminePlotForNaturalWondersEligibility(x, y)
 	local plotIndex = iW * y + x + 1;
 
 	-- adan_eslavo, start (top and bottom rows are not targetted)
-	if (not Map.IsWrapY() and (y == 0 or y == iH - 1)) or (not Map.IsWrapX() and (x == 0 or x == iW - 1)) then
+	if (not Map.IsWrapY() and (y <= 3 or y >= iH - 3)) or (not Map.IsWrapX() and (x <= 3 or x >= iW - 3)) then
 		return false, false;
 	end
 	-- adan_eslavo, end
@@ -5884,7 +5882,6 @@ function AssignStartingPlots:ExamineCandidatePlotForNaturalWondersEligibility(x,
 	if self:ExaminePlotForNaturalWondersEligibility(x, y) == false then
 		return false
 	end
-
 	-- local iW, iH = Map.GetGridSize();
 	-- Now loop through adjacent plots. Using Map.PlotDirection() in combination with
 	-- direction types, an alternate first-ring hex adjustment method, instead of the
@@ -6952,21 +6949,21 @@ function AssignStartingPlots:AssignCityStatesToRegionsOrToUninhabited(args)
 	local iW, iH = Map.GetGridSize()
 	local ratio = self.iNumCityStates / self.iNumCivs;
 	if ratio > 14 then -- This is a ridiculous number of city states for a game with two civs, but we'll account for it anyway.
-		self.iNumCityStatesPerRegion = 10;
+		self.iNumCityStatesPerRegion = 15;
 	elseif ratio > 11 then -- This is a ridiculous number of cs for two or three civs.
-		self.iNumCityStatesPerRegion = 8;
+		self.iNumCityStatesPerRegion = 12;
 	elseif ratio > 8 then
+		self.iNumCityStatesPerRegion = 9;
+	elseif ratio > 5 then
 		self.iNumCityStatesPerRegion = 6;
-	elseif ratio > 5.7 then
+	elseif ratio > 4 then
+		self.iNumCityStatesPerRegion = 5;
+	elseif ratio > 2.5 then
 		self.iNumCityStatesPerRegion = 4;
-	elseif ratio > 4.35 then
-		self.iNumCityStatesPerRegion = 3;
-	elseif ratio > 2.7 then
+	elseif ratio > 1 then
 		self.iNumCityStatesPerRegion = 2;
-	elseif ratio > 1.35 then
-		self.iNumCityStatesPerRegion = 1;
 	else
-		self.iNumCityStatesPerRegion = 0;
+		self.iNumCityStatesPerRegion = 1;
 	end
 	-- Assign the "Per Region" City States to their regions.
 	--print("- - - - - - - - - - - - - - - - -"); print("Assigning City States to Regions");
@@ -7199,23 +7196,23 @@ function AssignStartingPlots:CanPlaceCityStateAt(x, y, area_ID, force_it, ignore
 	end
 
 	-- Must not be on map borders
-	if (not Map:IsWrapX() and (x < 1 or x >= iW - 1)) or (not Map:IsWrapY() and (y < 1 or y >= iH - 1)) then
+	if (not Map:IsWrapX() and (x <= 3 or x >= iW - 3)) or (not Map:IsWrapY() and (y <= 3 or y >= iH - 3)) then
 		return false
 	end
 
 	-- Avoid natural wonders
 	for nearPlot in self:Plot_GetPlotsInCircle(plot, 1, 4) do
 		local featureInfo = GameInfo.Features[nearPlot:GetFeatureType()]
-		if featureInfo and featureInfo.NaturalWonder then
-			--print("CanPlaceCityStateAt: avoided natural wonder: ", featureInfo.Type)
+		if featureInfo and (featureInfo.NaturalWonder or (featureInfo.PseudoNaturalWonder == 1)) then
+			print("CanPlaceCityStateAt: avoided natural wonder: ", featureInfo.Type)
 			return false
 		end
 	end
 
 	-- Reserve the best city sites for major civs
 	local fertility = self:Plot_GetFertilityInRange(plot, 2)
-	if fertility > 48 then
-		--print("CanPlaceCityStateAt: avoided fertility: ", fertility)
+	if fertility < 4 then
+		print("CanPlaceCityStateAt: avoided fertility: ", fertility)
 		return false
 	end
 
@@ -11018,7 +11015,7 @@ function AssignStartingPlots:AdjustTiles()
 					else
 						-- Add some jungle or forest.
 						if self:IsTropical(y) then
-							if res_ID ~= self.deer_ID and res_ID ~= self.fur_ID then
+							if res_ID ~= self.fur_ID then
 								plot:SetFeatureType(FeatureTypes.FEATURE_JUNGLE, -1)
 							else
 								plot:SetFeatureType(FeatureTypes.FEATURE_FOREST, -1)
@@ -11069,7 +11066,6 @@ function AssignStartingPlots:AdjustTiles()
 				if res_ID == self.ivory_ID then
 					-- Always want it flat.  Other types are fine on hills.
 					plot:SetPlotType(PlotTypes.PLOT_LAND, false, true)
-					plot:SetFeatureType(FeatureTypes.NO_FEATURE, -1)
 				end
 
 				-- Don't remove flood plains if present for the few that are placed on it, only remove other features, like marsh or any trees.
